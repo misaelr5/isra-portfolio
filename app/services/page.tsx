@@ -1,20 +1,32 @@
 import { Reveal } from "@/components/portfolio/Reveal";
 import { SectionIntro } from "@/components/portfolio/SectionIntro";
+import { PricingOverview } from "@/components/portfolio/PricingOverview";
 import { ServicesCatalog } from "@/components/portfolio/ServicesCatalog";
+import { WorkProcess } from "@/components/portfolio/WorkProcess";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Servicios",
+  description:
+    "Landings, sitios web, e-commerce, sistemas a medida y soporte. Explorá el catálogo de servicios de ISRA y cotizá por WhatsApp.",
+  path: "/services"
+});
 
 export default function ServicesPage() {
   return (
-    <main className="bg-page text-navy">
+    <main id="main-content" className="bg-page text-navy">
       <section className="section-top pt-36">
         <Reveal className="container-shell">
           <SectionIntro
             badge="Servicios"
             title="Servicios"
-            subtitle="Elegí una categoría, explorá cada solución y encontrá el camino más claro para convertir tu idea en una presencia digital real."
+            subtitle="Elegí una categoría, explorá cada solución y encontrá el camino más claro para convertir tu idea en presencia digital."
           />
         </Reveal>
       </section>
       <ServicesCatalog />
+      <WorkProcess />
+      <PricingOverview />
     </main>
   );
 }

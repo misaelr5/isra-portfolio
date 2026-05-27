@@ -13,6 +13,7 @@ import {
   Server,
   type LucideIcon
 } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 
 export type Skill = {
   name: string;
@@ -27,6 +28,15 @@ export type Project = {
   tags: string[];
   description: string;
   image: string;
+  imageAlt: string;
+  repoUrl?: string;
+  demoUrl?: string;
+};
+
+export type SkillLevel = {
+  name: string;
+  level: "Avanzado" | "Intermedio" | "En formación";
+  progress: number;
 };
 
 export const heroSkills: Skill[] = [
@@ -41,57 +51,73 @@ export const heroSkills: Skill[] = [
   { name: "Infraestructura de Datos", description: "Datos, orden y escalabilidad", icon: Cpu }
 ];
 
-export const skillBars = [
-  { name: "Python", percent: 80 },
-  { name: "PHP", percent: 90 },
-  { name: "HTML", percent: 90 },
-  { name: "React", percent: 70 },
-  { name: "Next.js", percent: 65 },
-  { name: "Laravel", percent: 85 }
+export const skillBars: SkillLevel[] = [
+  { name: "Python", level: "Avanzado", progress: 85 },
+  { name: "PHP / Laravel", level: "Avanzado", progress: 88 },
+  { name: "HTML & CSS", level: "Avanzado", progress: 90 },
+  { name: "React", level: "Intermedio", progress: 78 },
+  { name: "Next.js", level: "Intermedio", progress: 75 },
+  { name: "TypeScript", level: "Intermedio", progress: 72 }
 ];
 
 export const featuredProjects: Project[] = [
   {
-    title: "Detección de fraude en impuestos",
-    category: "AI & ML",
-    tags: ["Python", "Machine Learning", "AI"],
-    description: "Sistema para detectar actividades fraudulentas en declaraciones impositivas usando AI y machine learning.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
+    title: "Sitio web ISRA",
+    category: "Web",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    description:
+      "Presencia digital del estudio con catálogo de servicios, portfolio, formulario de contacto y foco en conversión comercial.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Desarrollo web en laptop",
+    repoUrl: siteConfig.social.github + "/isra-portfolio",
+    demoUrl: siteConfig.url
   }
 ];
 
 export const projects: Project[] = [
   ...featuredProjects,
   {
-    title: "Plataforma de e-commerce",
-    category: "Tiendas",
-    tags: ["JavaScript", "Node.js", "React", "MongoDB"],
-    description: "Plataforma full-stack de e-commerce con autenticación, catálogo de productos y procesamiento de pagos.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80"
+    title: "Detección de fraude en impuestos",
+    category: "AI & ML",
+    tags: ["Python", "Machine Learning"],
+    description:
+      "Proyecto académico de clasificación para detectar patrones sospechosos en declaraciones impositivas.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Dashboard de análisis de datos"
   },
   {
-    title: "Portfolio personal",
-    category: "Web",
-    tags: ["React", "Node", "HTML", "CSS"],
-    description: "Portfolio personal responsive para mostrar proyectos y habilidades.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
+    title: "Plataforma de e-commerce",
+    category: "Tiendas",
+    tags: ["JavaScript", "React", "Node.js", "MongoDB"],
+    description:
+      "Tienda full-stack con catálogo, autenticación de usuarios y flujo de checkout para venta online.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Compra online desde el celular"
+  },
+  {
+    title: "Panel administrativo modular",
+    category: "Modulos",
+    tags: ["PHP", "Laravel", "MySQL"],
+    description: "Módulo interno con roles, formularios y reportes para operaciones de un negocio local.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Panel de control de negocio"
   }
 ];
 
 export const aboutCards = [
   {
     title: "Desarrollo web",
-    text: "Experiencia construyendo aplicaciones web modernas y responsive usando React.js, Next.js y Node.js.",
+    text: "Construimos sitios y aplicaciones modernas con React, Next.js y buenas prácticas de rendimiento y SEO.",
     icon: Code2
   },
   {
-    title: "Ciencias computacionales",
-    text: "Base sólida en algoritmos, estructuras de datos y principios de programación.",
+    title: "Formación técnica",
+    text: "Equipo en formación en ciencias computacionales, con base sólida en algoritmos, backend y seguridad.",
     icon: GraduationCap
   },
   {
-    title: "Apps & Systems",
-    text: "Construcción de aplicaciones web a medida, dashboards, CRMs y herramientas internas para flujos reales de negocio.",
+    title: "Apps y sistemas",
+    text: "Dashboards, CRMs y herramientas internas pensadas para procesos reales de negocio.",
     icon: Brain
   }
 ];
@@ -142,49 +168,6 @@ export const certifications = [
     year: "2026",
     description:
       "Fundamentos de ciencias de la computación: programación, algoritmos, estructuras de datos, desarrollo web y resolución de problemas."
-  }
-];
-
-export const moreAbout = [
-  {
-    title: "Personal Interests",
-    icon: "user",
-    items: [
-      "Exploring new technologies",
-      "Solving algorithmic challenges",
-      "Open-source contributions",
-      "Web development projects"
-    ]
-  },
-  {
-    title: "Coding Philosophy",
-    icon: "code",
-    items: [
-      "Clean and maintainable code",
-      "Focus on user experience",
-      "Continuous learning and improvement",
-      "Building with scalability in mind"
-    ]
-  },
-  {
-    title: "Education Journey",
-    icon: "education",
-    items: [
-      "Computer Science fundamentals",
-      "Data structures and algorithms",
-      "Machine learning and AI",
-      "Self-taught web development"
-    ]
-  },
-  {
-    title: "Future Goals",
-    icon: "book",
-    items: [
-      "Mastering advanced AI techniques",
-      "Building impactful web applications",
-      "Contributing to open-source projects",
-      "Exploring blockchain development"
-    ]
   }
 ];
 
@@ -246,14 +229,13 @@ export const education = [
 ];
 
 export const professionalSkills = [
-  ["Python", "Advanced", "purple"],
-  ["JavaScript", "Advanced", "purple"],
-  ["React.js", "Intermediate", "blue"],
-  ["Node.js", "Intermediate", "blue"],
-  ["Next.js", "Intermediate", "blue"],
-  ["C++", "Intermediate", "blue"],
-  ["Machine Learning", "Intermediate", "blue"],
-  ["CSS", "Intermediate", "blue"],
-  ["Blockchain", "Beginner", "green"],
-  ["AI", "Intermediate", "blue"]
-];
+  ["Python", "Avanzado", "purple"],
+  ["JavaScript", "Avanzado", "purple"],
+  ["React.js", "Intermedio", "blue"],
+  ["Node.js", "Intermedio", "blue"],
+  ["Next.js", "Intermedio", "blue"],
+  ["PHP / Laravel", "Avanzado", "purple"],
+  ["CSS", "Avanzado", "purple"],
+  ["Ciberseguridad", "En formación", "green"],
+  ["IA aplicada", "Intermedio", "blue"]
+] as const;

@@ -24,6 +24,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { Reveal } from "@/components/portfolio/Reveal";
 
 type TabId = "skills" | "education" | "experience" | "projects" | "certifications";
 
@@ -259,9 +260,9 @@ export default function ResumePage() {
   }, [stackFilter]);
 
   return (
-    <main className="bg-page text-navy">
-      <section className="section-top section-padding">
-        <div className="container-shell">
+    <main id="main-content" className="bg-page text-navy">
+      <Reveal className="section-top section-padding">
+        <section className="container-shell">
           <div className="grid gap-8 rounded-2xl border border-line bg-[#F7F4EE] p-8 shadow-[0_24px_70px_rgba(15,23,32,0.1)] lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange">ISRA</p>
@@ -276,10 +277,11 @@ export default function ResumePage() {
               Ver servicios
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </Reveal>
 
-      <section className="container-shell pb-24" id="resume-content">
+      <Reveal className="container-shell pb-24" delay={100}>
+      <section id="resume-content">
         <div className="rounded-2xl border border-line bg-[#F7F4EE] p-3">
           <div className="flex flex-wrap gap-2">
             {tabs.map((tab) => (
@@ -398,6 +400,7 @@ export default function ResumePage() {
           ) : null}
         </div>
       </section>
+      </Reveal>
     </main>
   );
 }

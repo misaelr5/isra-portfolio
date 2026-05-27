@@ -1,74 +1,54 @@
-# ISRA — Portfolio Oficial
+# ISRA — Sitio web oficial
 
-Portfolio oficial de **ISRA**, una startup enfocada en desarrollo web, soluciones digitales, automatización y creación de sistemas funcionales para negocios, marcas y proyectos en crecimiento.
+Sitio de **ISRA** (Innovación en Sistemas, Redes y Apps): estudio digital en Córdoba, Argentina. Presenta servicios, portfolio, formación y contacto.
 
-**ISRA** significa **Innovación en Sistemas, Redes y Apps**.
+## Stack
 
-El proyecto fue creado por mi junto a un amigo, con el objetivo de aplicar lo estudiado, construir soluciones reales y darnos a conocer profesionalmente.
+- Next.js 14 (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS
 
-ISRA nace con un objetivo claro; construir herramientas digitales que no solo se vean bien, sino que funcionen, vendan, automaticen procesos y aporten valor real.
+## Configuración
 
----
-
-## Sobre ISRA
-
-El enfoque principal está puesto en crear soluciones digitales modernas, funcionales y escalables, combinando diseño, desarrollo, estrategia y tecnología.
-
-ISRA busca unir conocimiento técnico, creatividad y visión emprendedora para desarrollar proyectos digitales que ayuden a negocios, marcas y personas a mejorar su presencia, organización y crecimiento.
-
----
-
-## Qué hacemos
-
-En ISRA trabajamos sobre soluciones como:
-
-- Sitios web institucionales.
-- Landing pages orientadas a conversión.
-- Aplicaciones web.
-- Sistemas internos para negocios.
-- Automatización de procesos.
-- Dashboards y paneles administrativos.
-- Integración de formularios, bases de datos y flujos de trabajo.
-- Soluciones digitales personalizadas según la necesidad del cliente.
-
----
-
-## Objetivo del portfolio
-
-Este portfolio tiene como objetivo presentar la identidad, visión, servicios y capacidades técnicas de ISRA.
-
-El sitio funciona como carta de presentación profesional para mostrar:
-
-- Quiénes somos.
-- Qué problemas resolvemos.
-- Qué tipo de soluciones ofrecemos.
-- Cómo trabajamos.
-- Qué tecnologías utilizamos.
-- Cómo contactarnos.
-
----
-
-## Tecnologías utilizadas
-
-Este proyecto puede estar construido con tecnologías como:
-
-- **React**
-- **Next.js**
-- **TypeScript**
-- **Tailwind CSS**
-- **Framer Motion**
-- **JavaScript**
-- **HTML**
-- **CSS**
-
-> Las tecnologías pueden variar según la versión del proyecto y las necesidades de desarrollo.
-
----
-
-## Instalación y uso local
-
-Clonar el repositorio:
+1. Copiá `.env.example` a `.env.local` y definí tu dominio:
 
 ```bash
-git clone https://github.com/misaelr5/isra-portfolio.git
+NEXT_PUBLIC_SITE_URL=https://tu-dominio.com
 ```
+
+2. Editá contacto y redes en `lib/site.ts` (email, WhatsApp, LinkedIn, GitHub).
+
+3. Configurá el formulario con [Resend](https://resend.com):
+   - `RESEND_API_KEY` — API key
+   - `RESEND_FROM_EMAIL` — remitente verificado (ej. `ISRA <contacto@tudominio.com>`)
+   - `CONTACT_TO_EMAIL` — destino de las consultas  
+   Sin estas variables, el formulario abre el cliente de correo (`mailto`) como respaldo.
+
+4. Ajustá precios orientativos en `lib/services.ts` si cambian tus tarifas.
+
+5. Reemplazá los SVG de marca en `public/images/` si tenés logo final en PNG/SVG propio.
+
+## Desarrollo local
+
+```bash
+npm install
+npm run dev
+```
+
+Abrí [http://localhost:3000](http://localhost:3000).
+
+## Producción
+
+```bash
+npm run build
+npm run start
+```
+
+## Estructura
+
+- `app/` — rutas y metadata SEO
+- `components/portfolio/` — UI del sitio
+- `lib/site.ts` — datos de contacto y WhatsApp
+- `lib/metadata.ts` — Open Graph y plantillas SEO
+- `public/images/` — logo, favicon y OG

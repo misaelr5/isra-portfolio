@@ -1,6 +1,13 @@
-import { ArrowRight, Github, Sparkles } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Project } from "./data";
+import { buttonHover, cardHover, scaleIn } from "@/components/portfolio/motion";
+
+const MotionLink = motion(Link);
 
 type ProjectCardProps = {
   project: Project;
@@ -9,18 +16,24 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-line bg-card transition duration-500 ease-out hover:border-teal">
+    <motion.article
+      className="group overflow-hidden rounded-2xl border border-line bg-card"
+      initial="hidden"
+      variants={scaleIn}
+      viewport={{ once: true, amount: 0.22 }}
+      whileInView="visible"
+      {...cardHover}
+    >
       <div className="relative aspect-video overflow-hidden">
         <Image
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           src={project.image}
-          alt=""
+          alt={project.imageAlt}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
         />
         {!featured ? (
           <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-teal/90 px-3 py-1 text-xs font-semibold text-white">
-            <Sparkles size={13} />
             {project.category}
           </span>
         ) : null}
@@ -35,19 +48,39 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             </span>
           ))}
         </div>
-        <div className={`mt-5 flex items-center gap-5 ${featured ? "justify-start" : "justify-center"}`}>
+        <div className={`mt-5 flex flex-wrap items-center gap-4 ${featured ? "justify-start" : "justify-center"}`}>
           {featured ? (
-            <a className="inline-flex items-center gap-1 text-sm font-semibold text-teal" href="/projects">
-              Ver detalles
-              <ArrowRight size={15} />
-            </a>
+            <MotionLink className="inline-flex items-center gap-1 text-sm font-semibold text-teal" href="/projects" {...buttonHover}>
+                Ver detalles
+                <ArrowRight size={15} aria-hidden="true" />
+              </MotionLink>
           ) : null}
-          <a className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-teal" href="#">
-            <Github size={16} />
-            Código fuente
-          </a>
+          {project.demoUrl ? (
+            <motion.a
+              className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-teal"
+              href={project.demoUrl}
+              rel="noreferrer"
+              target="_blank"
+              {...buttonHover}
+            >
+              <ExternalLink size={16} aria-hidden="true" />
+              Ver demo
+            </motion.a>
+          ) : null}
+          {project.repoUrl ? (
+            <motion.a
+              className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-teal"
+              href={project.repoUrl}
+              rel="noreferrer"
+              target="_blank"
+              {...buttonHover}
+            >
+              <Github size={16} aria-hidden="true" />
+              Código fuente
+            </motion.a>
+          ) : null}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

@@ -1,69 +1,156 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { defaultWhatsAppHref } from "@/lib/site";
+import { buttonHover, motionEase, navScroll } from "@/components/portfolio/motion";
 
 const navItems = [
   { label: "Inicio", href: "/" },
   { label: "Servicios", href: "/services" },
-  { label: "Sobre Nosotros", href: "/about" },
+  { label: "Nosotros", href: "/about" },
   { label: "Formación", href: "/academics" },
   { label: "Proyectos", href: "/projects" },
   { label: "Resumen", href: "/resume" },
   { label: "Contacto", href: "/contact" }
 ];
 
+function NavLink({ label, href, active }: { label: string; href: string; active: boolean }) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <Link
+      className={`nav-link relative pb-1 text-sm font-medium transition-colors hover:text-orange ${
+        active ? "is-active text-navy" : "text-navy/70"
+      }`}
+      href={href}
+    >
+      {label}
+      <motion.span
+        className="absolute bottom-0 left-0 h-px w-full origin-left bg-orange"
+        initial={false}
+        animate={reduceMotion ? { scaleX: active ? 1 : 0 } : { scaleX: active ? 1 : 0 }}
+        whileHover={reduceMotion ? undefined : { scaleX: 1 }}
+        transition={{ duration: 0.28, ease: motionEase }}
+      />
+    </Link>
+  );
+}
+
 export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
-    <nav
-      className={`navbar-enter fixed left-0 z-50 w-full px-4 text-navy transition-all duration-300 md:px-8 ${
-        isScrolled ? "top-3 md:top-4" : "top-0 border-b border-line bg-sand/95 py-4 backdrop-blur-xl"
-      }`}
+    <motion.header
+      animate={isScrolled ? "scrolled" : "top"}
+      className="navbar-enter fixed left-0 top-4 z-50 w-full px-4 text-navy md:px-8"
+      initial={{ opacity: 0, y: -18 }}
+      transition={{ duration: 0.3, ease: motionEase }}
+      variants={navScroll}
     >
-      <div
-        className={`mx-auto flex items-center justify-between gap-8 transition-all duration-300 ${
-          isScrolled
-            ? "max-w-6xl rounded-xl border border-white/40 bg-sand/75 px-4 py-3 shadow-[0_18px_50px_rgba(15,23,32,0.16)] backdrop-blur-2xl md:px-6"
-            : "max-w-7xl"
+      <motion.div
+        className={`mx-auto flex items-center justify-between gap-4 rounded-xl border px-4 py-3 md:px-6 ${
+          isScrolled ? "max-w-6xl" : "max-w-7xl"
         }`}
+        transition={{ duration: 0.3, ease: motionEase }}
       >
-        <Link aria-label="ISRA - Inicio" className="brand-logo-link" href="/">
+        <Link aria-label="ISRA - Inicio" className="brand-logo-link shrink-0" href="/">
           <span className="brand-logo brand-logo--nav" aria-hidden="true" />
           <span className="sr-only">ISRA</span>
         </Link>
-        <div className="flex flex-wrap items-center justify-end gap-4 md:gap-8">
-          {navItems.map((item) => {
-            const active = !item.href.includes("#") && pathname === item.href;
 
-            return (
-              <Link
-                key={item.label}
-                className={`nav-link relative pb-1 text-sm font-medium transition-colors hover:text-orange ${
-                  active ? "is-active text-navy" : "text-navy/70"
-                }`}
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </nav>
+        <nav aria-label="Principal" className="hidden items-center gap-6 lg:flex">
+          {navItems.map((item) => (
+            <NavLink key={item.label} active={pathname === item.href} href={item.href} label={item.label} />
+          ))}
+          <motion.a
+            className="rounded-md bg-orange px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#e04a10]"
+            href={defaultWhatsAppHref}
+            rel="noreferrer"
+            target="_blank"
+            {...buttonHover}
+          >
+            Cotizar
+          </motion.a>
+        </nav>
+
+        <motion.button
+          aria-controls="mobile-nav"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          className="grid h-11 w-11 place-items-center rounded-lg border border-line bg-white/80 text-navy lg:hidden"
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          {...buttonHover}
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </motion.button>
+      </motion.div>
+
+      <motion.div
+        className="fixed inset-0 z-40 bg-navy/40 backdrop-blur-sm lg:hidden"
+        aria-hidden={!menuOpen}
+        animate={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none" }}
+        initial={false}
+        transition={{ duration: 0.2, ease: motionEase }}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      <motion.nav
+        id="mobile-nav"
+        aria-label="Menú móvil"
+        className="fixed right-0 top-0 z-50 flex h-full w-[min(88vw,320px)] flex-col gap-1 border-l border-line bg-sand px-5 pb-8 pt-24 shadow-2xl lg:hidden"
+        animate={{ x: menuOpen ? 0 : "100%" }}
+        initial={false}
+        transition={{ duration: 0.3, ease: motionEase }}
+      >
+        {navItems.map((item) => {
+          const active = pathname === item.href;
+          return (
+            <Link
+              key={item.label}
+              className={`rounded-lg px-3 py-3 text-base font-medium transition-colors ${
+                active ? "bg-orange/10 text-orange" : "text-navy/80 hover:bg-white/60"
+              }`}
+              href={item.href}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
+        <motion.a
+          className="mt-4 inline-flex items-center justify-center rounded-md bg-orange px-4 py-3 font-semibold text-white"
+          href={defaultWhatsAppHref}
+          rel="noreferrer"
+          target="_blank"
+          {...buttonHover}
+        >
+          Cotizar por WhatsApp
+        </motion.a>
+      </motion.nav>
+    </motion.header>
   );
 }

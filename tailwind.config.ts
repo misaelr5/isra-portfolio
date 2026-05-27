@@ -20,7 +20,7 @@ const config: Config = {
         line: "rgba(15, 23, 32, 0.14)"
       },
       fontFamily: {
-        sans: ["var(--font-body)", "Inter", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "sans-serif"],
         heading: ["var(--font-heading)", "Space Grotesk", "sans-serif"]
       },
       boxShadow: {

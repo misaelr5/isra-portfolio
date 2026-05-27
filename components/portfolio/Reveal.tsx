@@ -1,52 +1,41 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import type { ReactNode } from "react";
+import { fadeIn, fadeLeft, fadeUp, scaleIn } from "@/components/portfolio/motion";
 
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  delay?: number;
+  variant?: "up" | "scale" | "left" | "fade";
 };
 
-export function Reveal({ children, className = "" }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
+const variants = {
+  up: fadeUp,
+  scale: scaleIn,
+  left: fadeLeft,
+  fade: fadeIn
+} as const;
 
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
+export function Reveal({ children, className = "", delay = 0, variant = "up" }: RevealProps) {
+  const reduceMotion = useReducedMotion();
+  const current = variants[variant] ?? fadeUp;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          node.classList.add("is-visible");
-          
-          // Apply entrance animations to child elements
-          const children = node.querySelectorAll<HTMLElement>("article, aside, form, .bg-card, .bg-card-alt, .rounded-2xl, .card, button[type='submit']");
-          children.forEach((child, index) => {
-            // Apply different entrance animations based on element type
-            if (child.tagName === "BUTTON" || child.matches("button")) {
-              child.classList.add("entrance-button");
-            } else if (child.classList.contains("glass-panel")) {
-              child.classList.add("entrance-fade-scale");
-            } else {
-              child.classList.add("entrance-fade-slide");
-            }
-            // Add stagger delay
-            child.style.setProperty("--entrance-delay", `${Math.min(index * 80, 400)}ms`);
-          });
-          
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.14 }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+  if (reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
-    <div ref={ref} className={`fade-in ${className}`}>
+    <motion.div
+      className={className}
+      initial="hidden"
+      transition={{ delay: delay / 1000 }}
+      variants={current}
+      viewport={{ once: true, amount: 0.2 }}
+      whileInView="visible"
+    >
       {children}
-    </div>
+    </motion.div>
   );
 }

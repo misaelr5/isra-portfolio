@@ -4,6 +4,13 @@ import { AboutHighlightTitle } from "@/components/portfolio/AboutHighlightTitle"
 import { IsraKnowledgeGraph } from "@/components/portfolio/IsraKnowledgeGraph";
 import { Reveal } from "@/components/portfolio/Reveal";
 import { SectionIntro } from "@/components/portfolio/SectionIntro";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Sobre nosotros",
+  description: "Conocé al equipo ISRA: desarrollo web, backend, UI/UX y formación en ciencias computacionales desde Córdoba.",
+  path: "/about"
+});
 
 const iconMap = {
   user: User,
@@ -82,7 +89,7 @@ const translatedMoreAbout = [
 
 export default function AboutPage() {
   return (
-    <main className="bg-page text-navy">
+    <main id="main-content" className="bg-page text-navy">
       <section className="section-top section-padding">
         <Reveal className="container-shell">
           <SectionIntro
@@ -102,7 +109,7 @@ export default function AboutPage() {
         <Reveal className="container-shell grid gap-10 lg:grid-cols-2 lg:items-center">
           <IsraKnowledgeGraph />
           <div>
-            <h2 className="text-2xl font-bold">¿Qué hacemos?</h2>
+            <h2 className="text-2xl font-bold" data-reveal>¿Qué hacemos?</h2>
             <div className="mt-5 grid gap-5 leading-8 text-muted">
               <p>
                 En <span className="font-semibold text-teal">ISRA</span> trabajamos con PHP, Python, HTML, CSS, Node.js, React.js y Next.js, 
@@ -144,10 +151,9 @@ export default function AboutPage() {
                   <Image
                     className="h-7 w-7 object-contain transition duration-300 group-hover:scale-110"
                     src={`https://cdn.simpleicons.org/${technology.icon}/0F1720`}
-                    alt=""
+                    alt={`Logo de ${technology.name}`}
                     width={28}
                     height={28}
-                    aria-hidden="true"
                   />
                 </span>
                 <h3 className="max-w-full break-words text-center text-sm font-semibold leading-snug text-navy">{technology.name}</h3>
@@ -171,10 +177,9 @@ export default function AboutPage() {
                   <Image
                     className="h-7 w-7 object-contain transition duration-300 group-hover:scale-110"
                     src={`https://cdn.simpleicons.org/${technology.icon}/0F1720`}
-                    alt=""
+                    alt={`Logo de ${technology.name}`}
                     width={28}
                     height={28}
-                    aria-hidden="true"
                   />
                 </span>
                 <h3 className="max-w-full break-words text-center text-sm font-semibold leading-snug text-navy">{technology.name}</h3>

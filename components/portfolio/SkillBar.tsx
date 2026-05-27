@@ -1,16 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { SkillLevel } from "./data";
 
-type SkillBarProps = {
-  name: string;
-  percent: number;
-};
+type SkillBarProps = SkillLevel;
 
-export function SkillBar({ name, percent }: SkillBarProps) {
+export function SkillBar({ name, level, progress }: SkillBarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const [displayPercent, setDisplayPercent] = useState(0);
+  const [displayProgress, setDisplayProgress] = useState(0);
 
   useEffect(() => {
     const node = ref.current;
@@ -40,33 +38,33 @@ export function SkillBar({ name, percent }: SkillBarProps) {
     let frame = 0;
 
     function tick(now: number) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      setDisplayPercent(Math.round(percent * eased));
-
-      if (progress < 1) {
+      const easedProgress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - easedProgress, 3);
+      setDisplayProgress(Math.round(progress * eased));
+      if (easedProgress < 1) {
         frame = requestAnimationFrame(tick);
       }
     }
 
     frame = requestAnimationFrame(tick);
-
     return () => cancelAnimationFrame(frame);
-  }, [percent, visible]);
+  }, [progress, visible]);
 
   return (
     <article ref={ref} className="rounded-xl border border-line bg-card p-4">
       <div className="flex items-center justify-between gap-4 text-sm font-semibold text-navy">
         <span>{name}</span>
-        <span>
-          <span>{displayPercent}</span>%
-        </span>
+        <span className="rounded-full bg-orange/10 px-2.5 py-0.5 text-xs font-semibold text-orange">{level}</span>
       </div>
       <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-line">
         <div
           className="h-full rounded-full bg-teal transition-all duration-700 ease-out"
-          style={{ width: `${displayPercent}%` }}
+          style={{ width: `${displayProgress}%` }}
+          role="progressbar"
+          aria-valuenow={displayProgress}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={`${name}: ${level}`}
         />
       </div>
     </article>
