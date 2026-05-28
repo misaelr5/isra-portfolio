@@ -110,7 +110,7 @@ export const letterLift: Variants = {
     y: [16, -7, 0],
     rotateZ: [5, -1.5, 0],
     scale: [0.74, 1.12, 1],
-    transition: { duration: 0.72, ease: motionEase }
+    transition: { duration: 0.46, ease: motionEase }
   }
 };
 
@@ -118,8 +118,8 @@ export const wordBlocks: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.085,
-      delayChildren: 0.28
+      staggerChildren: 0.055,
+      delayChildren: 0.08
     }
   }
 };

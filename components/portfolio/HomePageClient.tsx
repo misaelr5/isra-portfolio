@@ -12,6 +12,7 @@ import { SkillCard } from "@/components/portfolio/SkillCard";
 import { buttonHover } from "@/components/portfolio/motion";
 import { TypeWriter } from "@/components/portfolio/TypeWriter";
 import { aboutCards, featuredProjects, heroSkills, skillBars } from "@/components/portfolio/data";
+import { allServices } from "@/lib/services";
 import { defaultWhatsAppHref } from "@/lib/site";
 
 const MotionLink = motion(Link);
@@ -74,7 +75,7 @@ export function HomePageClient() {
         <div className="container-shell relative z-10 grid min-h-[calc(100vh-6rem)] items-center gap-16 py-12 lg:grid-cols-2">
           <div>
             <HomeMotionItem delay={0}>
-              <Badge>Soluciones digitales en Córdoba</Badge>
+              <Badge>Webs que convierten visitas en consultas</Badge>
             </HomeMotionItem>
             <HomeMotionItem delay={80}>
               <span className="brand-star star-accent star-accent--lg mt-6" aria-hidden="true" />
@@ -87,8 +88,8 @@ export function HomePageClient() {
             </HomeMotionItem>
             <HomeMotionItem delay={380}>
               <p className="mt-5 max-w-xl leading-8 text-muted">
-                Desarrollamos sitios web, apps y sistemas que funcionan: código sólido, diseño claro y plataformas como
-                WordPress, WooCommerce, Webflow o Shopify cuando conviene a tu negocio.
+                Te ayudamos a vender mejor con una web clara, rapida y enfocada en resultados.
+                Diseno, desarrollo y estrategia en un proceso simple para que avances sin friccion.
               </p>
             </HomeMotionItem>
             <HomeMotionItem className="mt-8 flex flex-wrap gap-4" delay={480}>
@@ -99,12 +100,17 @@ export function HomePageClient() {
                 target="_blank"
                 {...buttonHover}
               >
-                Cotizar proyecto
+                Cotizar por WhatsApp
                 <ArrowRight size={18} aria-hidden="true" />
               </motion.a>
-              <MotionLink className="rounded-md border border-orange bg-sand px-6 py-3 font-semibold text-orange transition hover:bg-orange hover:text-white" href="/services" {...buttonHover}>
-                Ver servicios
+              <MotionLink className="rounded-md border border-orange bg-sand px-6 py-3 font-semibold text-orange transition hover:bg-orange hover:text-white" href="/projects" {...buttonHover}>
+                Ver casos reales
               </MotionLink>
+            </HomeMotionItem>
+            <HomeMotionItem className="mt-7 flex flex-wrap gap-2" delay={560}>
+              <span className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-navy/75">Respuesta en menos de 24h</span>
+              <span className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-navy/75">Presupuesto claro desde el inicio</span>
+              <span className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-navy/75">Enfoque comercial, no solo tecnico</span>
             </HomeMotionItem>
           </div>
 
@@ -120,13 +126,90 @@ export function HomePageClient() {
         </div>
       </section>
 
+      <section className="relative z-10 pb-8">
+        <HomeMotionReveal className="container-shell">
+          <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_30px_80px_rgba(15,23,32,0.14)]">
+            <div className="relative bg-white px-5 py-7 md:px-8 md:py-9">
+              <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-orange/12 blur-3xl" />
+              <div className="relative z-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-3xl">
+                  <p className="inline-flex items-center rounded-full border border-orange/30 bg-white/75 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-orange">
+                    Oferta principal
+                  </p>
+                  <h2 className="mt-3 text-2xl font-bold leading-tight text-navy md:text-3xl">
+                    Elegi el servicio ideal y empeza a convertir trafico en clientes
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-muted md:text-base">
+                    Te mostramos opciones claras, con precio base y alcance concreto para que tomes decision rapido.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-5 md:p-7">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {allServices.map((service, index) => {
+                  const Icon = service.icon;
+                  const featured = service.title === "Sitio Web Profesional";
+                  return (
+                    <HomeMotionReveal key={service.title} delay={index * 45}>
+                      <article
+                        className={`group relative overflow-hidden rounded-xl border p-4 transition duration-500 ease-out hover:-translate-y-1 ${
+                          featured
+                            ? "border-orange bg-[#fff8f3] shadow-[0_18px_36px_rgba(255,90,31,0.2)]"
+                            : "border-line bg-[#fbfaf8] hover:border-orange/45 hover:shadow-[0_16px_30px_rgba(15,23,32,0.1)]"
+                        }`}
+                      >
+                        {featured ? (
+                          <span className="absolute right-3 top-3 rounded-full bg-orange px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">
+                            Recomendado
+                          </span>
+                        ) : null}
+                        <div className="flex items-start gap-3">
+                          <span
+                            className={`grid h-10 w-10 shrink-0 place-items-center rounded-lg transition duration-300 group-hover:scale-110 ${
+                              featured ? "bg-orange text-white" : "bg-orange/10 text-orange group-hover:bg-orange group-hover:text-white"
+                            }`}
+                          >
+                            <Icon size={18} />
+                          </span>
+                          <div className="min-w-0">
+                            <h3 className="truncate text-sm font-bold text-navy">{service.title}</h3>
+                            <p className="mt-1 text-xs font-semibold text-orange">{service.priceFrom}</p>
+                            <p className="mt-2 line-clamp-2 text-xs leading-6 text-muted">{service.subtitle}</p>
+                          </div>
+                        </div>
+                      </article>
+                    </HomeMotionReveal>
+                  );
+                })}
+              </div>
+
+              <div className="mt-6 flex flex-col gap-3 rounded-xl border border-line bg-[#f7f4ee] p-4 md:flex-row md:items-center md:justify-between">
+                <p className="text-sm font-medium text-navy/80">
+                  Si no sabes por donde empezar, te recomendamos el plan segun objetivo, tiempo y presupuesto.
+                </p>
+                <MotionLink
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-orange px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#e04a10]"
+                  href="/services"
+                  {...buttonHover}
+                >
+                  Ver todos los servicios
+                  <ArrowRight size={16} aria-hidden="true" />
+                </MotionLink>
+              </div>
+            </div>
+          </div>
+        </HomeMotionReveal>
+      </section>
+
       <section id="services" className="relative z-10 section-padding bg-[#F7F4EE]">
         <HomeMotionReveal className="container-shell">
           <SectionIntro
-            badge="Sobre nosotros"
-            title="Quiénes somos"
+            badge="Por que ISRA"
+            title="Equipo tecnico con foco en negocio"
             as="h2"
-            subtitle="Somos un estudio joven de Córdoba con formación en ciencias computacionales, enfocados en desarrollo web, backend y productos digitales útiles."
+            subtitle="Combinamos desarrollo, diseno y estrategia para que tu inversion digital se traduzca en consultas, ventas y crecimiento."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {aboutCards.map((card, index) => {
@@ -148,7 +231,7 @@ export function HomePageClient() {
           </div>
           <HomeMotionReveal className="mt-10 text-center" delay={180} direction="scale">
             <MotionLink className="inline-flex items-center gap-2 rounded-md bg-orange px-6 py-3 font-semibold text-white" href="/about" {...buttonHover}>
-              Más sobre nosotros
+              Conocer al equipo
               <ArrowRight size={18} aria-hidden="true" />
             </MotionLink>
           </HomeMotionReveal>
@@ -204,12 +287,12 @@ export function HomePageClient() {
             <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-teal/10 text-teal">
               <Star size={34} aria-hidden="true" />
             </div>
-            <h2 className="mt-6 text-3xl font-bold">Trabajemos juntos</h2>
+            <h2 className="mt-6 text-3xl font-bold">Listo para tu proximo paso digital</h2>
             <p className="mt-4 leading-8 text-muted">
-              Estamos disponibles para proyectos freelance y colaboraciones. Contanos qué querés construir y te respondemos con una propuesta clara.
+              Contanos que queres lanzar o mejorar y te respondemos con un plan concreto, tiempos y presupuesto desde el inicio.
             </p>
             <motion.a className="mt-7 inline-flex items-center gap-2 rounded-md bg-orange px-6 py-3 font-semibold text-white transition hover:bg-[#e04a10]" href={defaultWhatsAppHref} rel="noreferrer" target="_blank" {...buttonHover}>
-              Escribinos por WhatsApp
+              Quiero cotizar ahora
               <ArrowRight size={18} aria-hidden="true" />
             </motion.a>
           </HomeMotionPanel>

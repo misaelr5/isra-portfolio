@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, FileText, Github, Linkedin, Loader2, Mail, MapPin, MessageSquare, Send, User, Workflow } from "lucide-react";
+import { CheckCircle2, FileText, Github, Instagram, Loader2, Mail, MapPin, MessageSquare, Send, User, Workflow } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 
@@ -132,13 +132,28 @@ export function ContactForm() {
             </div>
           </div>
           <div className="mt-8">
-            <h3 className="text-base font-semibold text-navy">Seguinos</h3>
+            <h3 className="text-base font-semibold text-navy">Contacto</h3>
             <div className="social-icons mt-4">
               <a className="social-icon" href={siteConfig.social.github} rel="noreferrer" target="_blank" aria-label="GitHub de ISRA">
                 <Github size={18} />
               </a>
-              <a className="social-icon" href={siteConfig.social.linkedin} rel="noreferrer" target="_blank" aria-label="LinkedIn de ISRA">
-                <Linkedin size={18} />
+              <a
+                className="social-icon"
+                href="https://www.instagram.com/"
+                rel="noreferrer"
+                target="_blank"
+                aria-label="Instagram de ISRA"
+              >
+                <Instagram size={18} />
+              </a>
+              <a
+                className="social-icon"
+                href={`https://wa.me/${siteConfig.whatsapp}`}
+                rel="noreferrer"
+                target="_blank"
+                aria-label="WhatsApp de ISRA"
+              >
+                <MessageSquare size={18} />
               </a>
             </div>
           </div>

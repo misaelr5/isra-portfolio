@@ -9,11 +9,74 @@ type ContactPayload = {
   website?: string;
 };
 
+type RateEntry = {
+  count: number;
+  resetAt: number;
+};
+
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX_REQUESTS = 5;
+const rateStore = new Map<string, RateEntry>();
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function getClientIp(request: Request) {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0]?.trim() || "unknown";
+  }
+  return request.headers.get("x-real-ip") ?? "unknown";
+}
+
+function checkRateLimit(key: string) {
+  const now = Date.now();
+  const current = rateStore.get(key);
+
+  if (!current || now >= current.resetAt) {
+    rateStore.set(key, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return { allowed: true, retryAfterSeconds: 0 };
+  }
+
+  if (current.count >= RATE_MAX_REQUESTS) {
+    return {
+      allowed: false,
+      retryAfterSeconds: Math.max(1, Math.ceil((current.resetAt - now) / 1000))
+    };
+  }
+
+  current.count += 1;
+  rateStore.set(key, current);
+  return { allowed: true, retryAfterSeconds: 0 };
+}
+
+function cleanupRateStore() {
+  const now = Date.now();
+  for (const [key, value] of rateStore.entries()) {
+    if (value.resetAt <= now) {
+      rateStore.delete(key);
+    }
+  }
+}
+
 export async function POST(request: Request) {
+  cleanupRateStore();
+
+  const ip = getClientIp(request);
+  const rateResult = checkRateLimit(ip);
+  if (!rateResult.allowed) {
+    return NextResponse.json(
+      { error: "RATE_LIMITED", message: "Demasiados intentos. Probá nuevamente en unos minutos." },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(rateResult.retryAfterSeconds)
+        }
+      }
+    );
+  }
+
   let body: ContactPayload;
 
   try {
