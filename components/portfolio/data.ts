@@ -62,14 +62,14 @@ export const skillBars: SkillLevel[] = [
 
 export const featuredProjects: Project[] = [
   {
-    title: "Sitio web ISRA",
+    title: "ISRA Portfolio Web",
     category: "Web",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lucide React", "Webs"],
     description:
       "Presencia digital del estudio con catálogo de servicios, portfolio, formulario de contacto y foco en conversión comercial.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Desarrollo web en laptop",
-    repoUrl: siteConfig.social.github + "/isra-portfolio",
+    image: "/images/projects/isra-portfolio-web.png",
+    imageAlt: "Portfolio web de ISRA en vista desktop",
+    repoUrl: "https://github.com/misaelr5/isra-portfolio",
     demoUrl: siteConfig.url
   }
 ];
@@ -77,7 +77,37 @@ export const featuredProjects: Project[] = [
 export const projects: Project[] = [
   ...featuredProjects,
   {
-    title: "Detección de fraude en impuestos",
+    title: "ISRA Focus Pomodoro",
+    category: "Apps",
+    tags: ["Electron", "JavaScript", "CSS", "HTML", "Productividad", "Pomodoro"],
+    description:
+      "App de escritorio para enfoque por bloques con modos de estudio, tareas por sesión, historial diario y estadísticas semanales exportables.",
+    image: "/images/projects/isra-focus-pomodoro.png",
+    imageAlt: "App ISRA FOCUS de productividad en escritorio",
+    repoUrl: "https://github.com/misaelr5/ISRA-FOCUS"
+  },
+  {
+    title: "MyCode CRM",
+    category: "Apps",
+    tags: ["Python", "Flask", "SQLite", "HTML", "CSS", "JavaScript", "CRM"],
+    description:
+      "CRM web completo para gestionar clientes, proyectos, tareas, pagos y notas, con importación de leads por CSV/JSON y panel de seguimiento comercial.",
+    image: "/images/projects/crm-for-cs50x.png",
+    imageAlt: "Dashboard CRM desarrollado para CS50x",
+    repoUrl: "https://github.com/misaelr5/CRM-FOR-CS50X"
+  },
+  {
+    title: "Calculadora USD Casa de Cambio",
+    category: "Apps",
+    tags: ["HTML", "CSS", "JavaScript", "WordPress", "Shortcode", "Finanzas", "Modulo"],
+    description:
+      "Calculadora de compra/venta de dólares para casa de cambio, con cotizaciones editables manualmente y estructura lista para integrarse en WordPress.",
+    image: "/images/projects/calculadora-usd-casa-cambio.png",
+    imageAlt: "Calculadora de dólares para casa de cambio",
+    repoUrl: "https://github.com/misaelr5/calculadora-usd-casa-cambio"
+  },
+  {
+    title: "Detección de Fraude Fiscal",
     category: "AI & ML",
     tags: ["Python", "Machine Learning"],
     description:
@@ -86,16 +116,18 @@ export const projects: Project[] = [
     imageAlt: "Dashboard de análisis de datos"
   },
   {
-    title: "Plataforma de e-commerce",
+    title: "Web de E-commerce",
     category: "Tiendas",
-    tags: ["JavaScript", "React", "Node.js", "MongoDB"],
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Tiendanube", "Tiendas", "Webs"],
     description:
-      "Tienda full-stack con catálogo, autenticación de usuarios y flujo de checkout para venta online.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
-    imageAlt: "Compra online desde el celular"
+      "Ecommerce de indumentaria con catálogo, detalle de producto y carrito de compras, preparado para integración con Tiendanube.",
+    image: "/images/projects/mi-tienda-ecommerce.png",
+    imageAlt: "Ecommerce de indumentaria MYCODE en desktop y mobile",
+    repoUrl: "https://github.com/misaelr5/mi-tienda",
+    demoUrl: "https://e-commerceisra.netlify.app/"
   },
   {
-    title: "Panel administrativo modular",
+    title: "Panel Administrativo Modular",
     category: "Modulos",
     tags: ["PHP", "Laravel", "MySQL"],
     description: "Módulo interno con roles, formularios y reportes para operaciones de un negocio local.",

@@ -92,7 +92,7 @@ export function ContactForm() {
   return (
     <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] contact-top-grid">
       <aside className="space-y-6">
-        <article className="glass-panel p-6">
+        <article className="glass-panel service-panel-card p-6">
           <h2 className="text-xl font-bold text-navy">Información de contacto</h2>
           <div className="my-6 h-px bg-line" />
           <div className="grid gap-4">
@@ -159,7 +159,7 @@ export function ContactForm() {
           </div>
         </article>
 
-        <article className="glass-panel p-6">
+        <article className="glass-panel service-panel-card p-6">
           <h3 className="text-lg font-semibold text-navy">Tiempo de respuesta</h3>
           <p className="mt-3 text-sm leading-7 text-muted">
             Respondemos en las primeras 24 horas hábiles. Contanos tu proyecto y te devolvemos una propuesta clara.
@@ -168,7 +168,7 @@ export function ContactForm() {
       </aside>
 
       {status === "success" ? (
-        <div className="rounded-2xl border border-line bg-white p-8 text-center shadow-[0_18px_44px_rgba(15,23,32,0.1)] md:p-12">
+        <div className="service-panel-card rounded-2xl border border-line bg-white p-8 text-center shadow-[0_18px_44px_rgba(15,23,32,0.1)] md:p-12">
           <CheckCircle2 className="mx-auto text-teal" size={48} aria-hidden="true" />
           <h2 className="mt-6 text-2xl font-bold text-navy">Mensaje enviado</h2>
           <p className="mt-4 leading-8 text-muted">Gracias por escribirnos. Te respondemos a la brevedad al email que indicaste.</p>
@@ -182,7 +182,7 @@ export function ContactForm() {
         </div>
       ) : (
         <form
-          className="rounded-2xl border border-line bg-white p-6 shadow-[0_18px_44px_rgba(15,23,32,0.1)] md:p-8"
+          className="service-panel-card rounded-2xl border border-line bg-white p-6 shadow-[0_18px_44px_rgba(15,23,32,0.1)] md:p-8"
           onSubmit={handleSubmit}
           noValidate
         >

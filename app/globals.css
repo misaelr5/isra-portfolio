@@ -255,16 +255,18 @@ img {
   width: var(--brand-logo-width);
   height: calc(var(--brand-logo-width) * 0.44);
   flex-shrink: 0;
-  background: url("/images/isra-logo.svg") center / contain no-repeat;
+  background: url("/images/isra-logo-original-cropped.png") center / contain no-repeat;
   filter: drop-shadow(0 10px 20px rgba(15, 23, 32, 0.08));
 }
 
 .brand-logo--nav {
-  --brand-logo-width: clamp(92px, 9vw, 118px);
+  --brand-logo-width: clamp(76px, 7.4vw, 94px);
+  background-position: center;
+  background-size: 94% auto;
 }
 
 .brand-logo--footer {
-  --brand-logo-width: 138px;
+  --brand-logo-width: 122px;
 }
 
 .preloader {
@@ -322,6 +324,13 @@ img {
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+}
+
+.preloader-logo {
+  --brand-logo-width: clamp(180px, 38vw, 340px);
+  margin-top: 0.65rem;
+  height: calc(var(--brand-logo-width) * 0.44);
+  animation: preloader-logo-rise 900ms var(--ease-out) both;
 }
 
 .preloader-brand-letter {
@@ -1189,6 +1198,53 @@ h1,
   filter: drop-shadow(0 0 4px rgba(255, 90, 31, 0.3));
 }
 
+.isra-graph-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 10%, rgba(255, 90, 31, 0.12) 46%, transparent 72%),
+    radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.18), transparent 32%),
+    radial-gradient(circle at 80% 76%, rgba(255, 90, 31, 0.14), transparent 30%);
+  opacity: 0.42;
+  transform: translate3d(-12%, -8%, 0) scale(1.1);
+  transition:
+    opacity 420ms ease,
+    transform 650ms var(--ease-out);
+}
+
+.isra-graph-panel:hover::before {
+  opacity: 0.7;
+  transform: translate3d(4%, 3%, 0) scale(1.16);
+}
+
+.isra-graph-badge {
+  transition:
+    border-color 280ms ease,
+    color 280ms ease,
+    transform 320ms var(--ease-out);
+}
+
+.isra-graph-panel:hover .isra-graph-badge {
+  border-color: rgba(255, 90, 31, 0.35);
+  color: rgba(255, 255, 255, 0.78);
+  transform: translateY(-2px);
+}
+
+.motion-ready .isra-graph-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: graph-node-pop 720ms var(--ease-out) both;
+  animation-delay: calc((var(--node-index, 0) * 22ms) + 140ms);
+}
+
+.motion-ready .isra-graph-link {
+  animation: graph-link-breathe 5.5s ease-in-out infinite;
+  animation-delay: calc(var(--link-index, 0) * 18ms);
+}
+
 .skill-card-float {
   animation: skill-card-float 6.5s ease-in-out infinite;
   transform-style: preserve-3d;
@@ -1421,6 +1477,26 @@ h1,
 
   50% {
     transform: translateY(-8px) rotate(6deg) scale(1.045);
+  }
+}
+
+@keyframes preloader-logo-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.92);
+    filter: blur(8px) drop-shadow(0 10px 20px rgba(15, 23, 32, 0));
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.02);
+    filter: blur(0) drop-shadow(0 12px 24px rgba(15, 23, 32, 0.08));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) drop-shadow(0 10px 20px rgba(15, 23, 32, 0.08));
   }
 }
 
@@ -1738,6 +1814,34 @@ h1,
   }
 }
 
+@keyframes graph-node-pop {
+  0% {
+    filter: blur(7px);
+    transform: translateY(18px) scale(0.72);
+  }
+
+  62% {
+    filter: blur(0);
+    transform: translateY(-3px) scale(1.08);
+  }
+
+  100% {
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes graph-link-breathe {
+  0%,
+  100% {
+    stroke-width: 0.9;
+  }
+
+  50% {
+    stroke-width: 1.12;
+  }
+}
+
 @keyframes sword-flow {
   0% {
     transform: translateX(-115%) scaleX(0.65);
@@ -1910,6 +2014,11 @@ h1,
   }
 
   .isra-graph-link-active {
+    animation: none !important;
+  }
+
+  .isra-graph-node,
+  .isra-graph-link {
     animation: none !important;
   }
 

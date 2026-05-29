@@ -201,7 +201,7 @@ function ResumeCard({ card }: { card: InfoCard }) {
   const Icon = card.icon ?? BookOpen;
 
   return (
-    <article className="rounded-2xl border border-line bg-white p-6 shadow-[0_18px_44px_rgba(15,23,32,0.1)]">
+    <article className="service-panel-card rounded-2xl border border-line bg-white p-6 shadow-[0_18px_44px_rgba(15,23,32,0.1)]">
       <div className="flex items-start justify-between gap-4">
         <span className="grid h-12 w-12 place-items-center rounded-xl bg-orange/10 text-orange">
           <Icon size={23} />
@@ -263,7 +263,7 @@ export default function ResumePage() {
     <main id="main-content" className="bg-page text-navy">
       <Reveal className="section-top section-padding">
         <section className="container-shell">
-          <div className="grid gap-8 rounded-2xl border border-line bg-[#F7F4EE] p-8 shadow-[0_24px_70px_rgba(15,23,32,0.1)] lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="service-panel-card grid gap-8 rounded-2xl border border-line bg-[#F7F4EE] p-8 shadow-[0_24px_70px_rgba(15,23,32,0.1)] lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange">ISRA</p>
               <p className="mt-2 text-sm font-medium text-muted">Innovacion en Software, Redes y Aplicaciones</p>
@@ -287,7 +287,7 @@ export default function ResumePage() {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                className={`rounded-md px-4 py-3 text-sm font-semibold transition ${
+                className={`service-tag-pop rounded-md px-4 py-3 text-sm font-semibold transition ${
                   activeTab === tab.id ? "bg-orange text-white" : "bg-[#F3EDE4] text-navy hover:text-orange"
                 }`}
                 type="button"
@@ -308,13 +308,13 @@ export default function ResumePage() {
                 ))}
               </div>
               <section className="rounded-2xl border border-line bg-white p-6">
-                <h2 className="text-3xl font-bold">Stack Tecnico</h2>
-                <p className="mt-3 leading-7 text-muted">Tecnologias, plataformas y herramientas que usamos para construir soluciones digitales.</p>
+                <h2 className="service-text-pop service-text-pop-1 text-3xl font-bold">Stack Tecnico</h2>
+                <p className="service-text-pop service-text-pop-2 mt-3 leading-7 text-muted">Tecnologias, plataformas y herramientas que usamos para construir soluciones digitales.</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {allStackFilters.map((filter) => (
                     <button
                       key={filter}
-                      className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                      className={`service-tag-pop rounded-full border px-4 py-2 text-sm font-semibold transition ${
                         stackFilter === filter ? "border-orange bg-orange text-white" : "border-line bg-[#F3EDE4] text-muted hover:text-orange"
                       }`}
                       type="button"
@@ -345,7 +345,7 @@ export default function ResumePage() {
                 ))}
               </div>
               <section className="rounded-2xl border border-line bg-white p-6">
-                <h3 className="text-2xl font-bold">Cursos clave</h3>
+                <h3 className="service-text-pop service-text-pop-1 text-2xl font-bold">Cursos clave</h3>
                 <div className="mt-5 flex flex-wrap gap-3">
                   {courseChips.map((chip) => (
                     <button key={chip} className="course-key-chip" type="button">

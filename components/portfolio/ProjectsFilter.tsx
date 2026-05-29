@@ -27,7 +27,7 @@ export function ProjectsFilter() {
   return (
     <>
       <Reveal className="container-shell mt-14" delay={60}>
-        <section className="rounded-2xl bg-card p-4">
+        <section className="service-panel-card rounded-2xl bg-card p-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center gap-2 overflow-x-auto pb-1 xl:overflow-visible xl:pb-0">
               <span className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-semibold text-navy">
@@ -67,7 +67,7 @@ export function ProjectsFilter() {
       <Reveal className="container-shell" delay={120}>
         <section className="grid gap-6 py-14 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.length === 0 ? (
-            <p className="col-span-full rounded-2xl border border-line bg-card p-8 text-center text-muted">
+            <p className="service-text-pop service-text-pop-2 col-span-full rounded-2xl border border-line bg-card p-8 text-center text-muted">
               No hay proyectos con ese filtro. Probá otra categoría o limpiá la búsqueda.
             </p>
           ) : (

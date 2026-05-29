@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 
 type NodeKind = "center" | "main" | "sub";
 
@@ -175,7 +175,7 @@ export function IsraKnowledgeGraph() {
 
   return (
     <div
-      className="group relative min-h-[430px] overflow-hidden rounded-2xl border border-white/10 bg-[#1f1f1f] p-3 shadow-[0_24px_70px_rgba(0,0,0,0.35)] sm:min-h-[500px] lg:min-h-[560px]"
+      className="isra-graph-panel group relative min-h-[430px] overflow-hidden rounded-2xl border border-white/10 bg-[#1f1f1f] p-3 shadow-[0_24px_70px_rgba(0,0,0,0.35)] sm:min-h-[500px] lg:min-h-[560px]"
       onPointerMove={handlePointerMove}
       onPointerLeave={() => {
         setHoveredId(null);
@@ -183,7 +183,7 @@ export function IsraKnowledgeGraph() {
       }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(255,255,255,0.06),transparent_34%)]" />
-      <div className="absolute left-4 top-4 z-10 rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45 backdrop-blur">
+      <div className="isra-graph-badge absolute left-4 top-4 z-10 rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45 backdrop-blur">
         ISRA graph
       </div>
 
@@ -208,7 +208,7 @@ export function IsraKnowledgeGraph() {
         </defs>
 
         <g>
-          {links.map((link) => {
+          {links.map((link, index) => {
             const source = nodeById.get(link.source);
             const target = nodeById.get(link.target);
 
@@ -228,13 +228,14 @@ export function IsraKnowledgeGraph() {
                 x2={target.x}
                 y2={target.y}
                 opacity={isDirect ? 0.86 : isParentBranch ? 0.12 : 0.04}
+                style={{ "--link-index": index } as CSSProperties}
               />
             );
           })}
         </g>
 
         <g>
-          {nodes.map((node) => {
+          {nodes.map((node, index) => {
             const isActive = activeId === node.id;
             const isConnected = connectedIds.has(node.id);
             const isDimmed = activeId ? !isConnected : node.kind === "sub";
@@ -245,7 +246,7 @@ export function IsraKnowledgeGraph() {
             return (
               <g
                 key={node.id}
-                className="cursor-pointer outline-none transition-opacity duration-300"
+                className="isra-graph-node cursor-pointer outline-none transition-opacity duration-300"
                 opacity={isDimmed ? 0.34 : 1}
                 onPointerEnter={() => setHoveredId(node.id)}
                 onFocus={() => setHoveredId(node.id)}
@@ -254,6 +255,7 @@ export function IsraKnowledgeGraph() {
                 tabIndex={0}
                 role="button"
                 aria-label={node.label}
+                style={{ "--node-index": index } as CSSProperties}
               >
                 <circle
                   cx={node.x}

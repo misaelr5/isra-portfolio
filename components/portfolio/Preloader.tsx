@@ -36,18 +36,8 @@ export function Preloader({ visible, label = "Cargando experiencia" }: Preloader
   return (
     <div className={`preloader ${visible ? "preloader--active" : ""}`} aria-hidden={!visible}>
       <div className="preloader-panel">
-        <span className="brand-star preloader-star" />
-        <p className="preloader-brand">
-          {"ISRA".split("").map((letter, index) => (
-            <span
-              key={letter + index}
-              className="preloader-brand-letter"
-              style={{ animationDelay: `${index * 90}ms` }}
-            >
-              {letter}
-            </span>
-          ))}
-        </p>
+        <span className="brand-star preloader-star" aria-hidden="true" />
+        <div className="brand-logo preloader-logo" role="img" aria-label="ISRA" />
         <p className="preloader-copy">{label}</p>
         <div className="preloader-progress" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
           <span className="preloader-progress__bar" style={{ width: `${progress}%` }} />

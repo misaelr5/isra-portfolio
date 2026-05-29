@@ -24,11 +24,11 @@ export default function ContactPage() {
           />
           <div className="mt-10 max-w-3xl mx-auto text-center">
             <AnimatedSubtitle
-              className="text-lg font-semibold text-navy"
+              className="service-text-pop service-text-pop-2 text-lg font-semibold text-navy"
               text="Tu mensaje es el primer paso para una presencia digital con mas claridad y resultados."
             />
           </div>
-          <div className="mt-8 flex justify-center">
+          <div className="service-text-pop service-text-pop-3 mt-8 flex justify-center">
             <a
               className="inline-flex items-center gap-2 rounded-md bg-orange px-6 py-3 font-semibold text-white transition hover:bg-[#e04a10]"
               href={defaultWhatsAppHref}
@@ -44,7 +44,9 @@ export default function ContactPage() {
 
       <section className="container-shell pb-24">
         <Reveal>
-          <ContactForm />
+          <div className="service-panel-card">
+            <ContactForm />
+          </div>
         </Reveal>
       </section>
     </main>

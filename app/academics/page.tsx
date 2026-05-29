@@ -27,7 +27,7 @@ export default function AcademicsPage() {
       <section className="pb-24">
         <Reveal className="container-shell grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {education.map((item) => (
-            <article key={item.title} className="rounded-2xl border border-line bg-card p-6">
+            <article key={item.title} className="service-panel-card rounded-2xl border border-line bg-card p-6">
               <GraduationCap className="text-teal" size={34} aria-hidden="true" />
               <h2 className="mt-5 text-xl font-bold">{item.title}</h2>
               <p className="mt-3 font-semibold text-navy">{item.institution}</p>
@@ -61,17 +61,17 @@ export default function AcademicsPage() {
 
       <section className="section-padding bg-[#F7F4EE]">
         <Reveal className="container-shell">
-          <h2 className="text-center text-3xl font-bold" data-reveal>Cursos clave</h2>
+          <h2 className="service-text-pop service-text-pop-1 text-center text-3xl font-bold" data-reveal>Cursos clave</h2>
           <CoursesKeyGrid courses={courses} />
         </Reveal>
       </section>
 
       <section className="section-padding">
         <Reveal className="container-shell">
-          <h2 className="text-center text-3xl font-bold" data-reveal>Certificaciones</h2>
+          <h2 className="service-text-pop service-text-pop-1 text-center text-3xl font-bold" data-reveal>Certificaciones</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {certifications.map((cert) => (
-              <article key={cert.title} className="rounded-2xl border border-line bg-card p-6">
+              <article key={cert.title} className="service-panel-card rounded-2xl border border-line bg-card p-6">
                 <h3 className="text-xl font-bold">{cert.title}</h3>
                 <p className="mt-2 text-sm font-semibold text-orange">
                   {cert.platform} · {cert.year}
