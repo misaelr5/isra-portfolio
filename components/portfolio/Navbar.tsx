@@ -72,8 +72,10 @@ export function Navbar() {
       variants={navScroll}
     >
       <motion.div
-        className={`mx-auto flex items-center justify-between gap-4 rounded-xl border px-4 py-3 md:px-6 ${
-          isScrolled ? "max-w-6xl" : "max-w-7xl"
+        className={`mx-auto flex items-center justify-between gap-4 rounded-xl px-4 py-3 md:px-6 ${
+          isScrolled
+            ? "max-w-6xl border border-line/70 bg-[#f3ede4]/88 shadow-[0_18px_50px_rgba(15,23,32,0.14)] backdrop-blur-xl"
+            : "max-w-7xl border border-transparent bg-transparent shadow-none"
         }`}
         transition={{ duration: 0.3, ease: motionEase }}
       >
@@ -101,7 +103,9 @@ export function Navbar() {
           aria-controls="mobile-nav"
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          className="grid h-11 w-11 place-items-center rounded-lg border border-line bg-white/80 text-navy lg:hidden"
+          className={`grid h-11 w-11 place-items-center rounded-lg border text-navy lg:hidden ${
+            isScrolled ? "border-line bg-white/80" : "border-transparent bg-white/35"
+          }`}
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
           {...buttonHover}

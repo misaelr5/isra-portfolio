@@ -89,17 +89,11 @@ export const subtleGlow = {
 export const navScroll = {
   top: {
     y: 0,
-    backgroundColor: "rgba(243, 237, 228, 0.78)",
-    backdropFilter: "blur(10px)",
-    boxShadow: "0 14px 38px rgba(15, 23, 32, 0.07)",
-    borderColor: "rgba(15, 23, 32, 0.08)"
+    scale: 1
   },
   scrolled: {
     y: 8,
-    backgroundColor: "rgba(243, 237, 228, 0.86)",
-    backdropFilter: "blur(18px)",
-    boxShadow: "0 18px 50px rgba(15, 23, 32, 0.14)",
-    borderColor: "rgba(255, 255, 255, 0.42)"
+    scale: 0.995
   }
 } as const;
 
