@@ -36,7 +36,6 @@ export function Preloader({ visible, label = "Cargando experiencia" }: Preloader
   return (
     <div className={`preloader ${visible ? "preloader--active" : ""}`} aria-hidden={!visible}>
       <div className="preloader-panel">
-        <span className="brand-star preloader-star" aria-hidden="true" />
         <div className="brand-logo preloader-logo" role="img" aria-label="ISRA" />
         <p className="preloader-copy">{label}</p>
         <div className="preloader-progress" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>

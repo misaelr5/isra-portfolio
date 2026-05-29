@@ -12,54 +12,55 @@ type MotionProps = {
   direction?: MotionDirection;
   index?: number;
   intensity?: number;
+  hoverMode?: "lift" | "hingeRight" | "slideRight" | "none";
 };
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
 const directionalVariants: Record<MotionDirection, Variants> = {
   up: {
-    hidden: { opacity: 0, y: 30, scale: 0.98, filter: "blur(10px)" },
+    hidden: { opacity: 0, y: 28, scale: 0.96, rotateX: 7 },
     visible: (delay = 0) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 0.72, ease: easeOut, delay: delay / 1000 }
+      rotateX: 0,
+      transition: { duration: 0.58, ease: easeOut, delay: delay / 1000 }
     }),
-    exit: { opacity: 0, y: -18, scale: 0.98, filter: "blur(8px)", transition: { duration: 0.32, ease: easeOut } }
+    exit: { opacity: 0, y: -14, scale: 0.98, transition: { duration: 0.26, ease: easeOut } }
   },
   left: {
-    hidden: { opacity: 0, x: -34, scale: 0.98, filter: "blur(10px)" },
+    hidden: { opacity: 0, x: -36, scale: 0.97, rotateY: -6 },
     visible: (delay = 0) => ({
       opacity: 1,
       x: 0,
       scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 0.74, ease: easeOut, delay: delay / 1000 }
+      rotateY: 0,
+      transition: { duration: 0.6, ease: easeOut, delay: delay / 1000 }
     }),
-    exit: { opacity: 0, x: -20, scale: 0.98, filter: "blur(8px)", transition: { duration: 0.32, ease: easeOut } }
+    exit: { opacity: 0, x: -18, scale: 0.98, transition: { duration: 0.26, ease: easeOut } }
   },
   right: {
-    hidden: { opacity: 0, x: 34, scale: 0.98, filter: "blur(10px)" },
+    hidden: { opacity: 0, x: 36, scale: 0.97, rotateY: 6 },
     visible: (delay = 0) => ({
       opacity: 1,
       x: 0,
       scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 0.74, ease: easeOut, delay: delay / 1000 }
+      rotateY: 0,
+      transition: { duration: 0.6, ease: easeOut, delay: delay / 1000 }
     }),
-    exit: { opacity: 0, x: 20, scale: 0.98, filter: "blur(8px)", transition: { duration: 0.32, ease: easeOut } }
+    exit: { opacity: 0, x: 18, scale: 0.98, transition: { duration: 0.26, ease: easeOut } }
   },
   scale: {
-    hidden: { opacity: 0, y: 16, scale: 0.92, filter: "blur(10px)" },
+    hidden: { opacity: 0, y: 18, scale: 0.92, rotateX: 8 },
     visible: (delay = 0) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 0.62, ease: easeOut, delay: delay / 1000 }
+      rotateX: 0,
+      transition: { duration: 0.56, ease: easeOut, delay: delay / 1000 }
     }),
-    exit: { opacity: 0, y: -12, scale: 0.94, filter: "blur(8px)", transition: { duration: 0.3, ease: easeOut } }
+    exit: { opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.24, ease: easeOut } }
   }
 };
 
@@ -181,7 +182,7 @@ export function AboutMotionPanel({
   );
 }
 
-export function AboutMotionCard({ children, className = "", delay = 0, index = 0, intensity = 4 }: MotionProps) {
+export function AboutMotionCard({ children, className = "", delay = 0, index = 0, intensity = 4, hoverMode = "lift" }: MotionProps) {
   const reduceMotion = useReducedMotion();
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
@@ -212,16 +213,36 @@ export function AboutMotionCard({ children, className = "", delay = 0, index = 0
       custom={Math.min(itemDelay, 520)}
       exit="exit"
       initial="hidden"
-      onPointerLeave={handlePointerLeave}
-      onPointerMove={handlePointerMove}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      onPointerLeave={hoverMode === "none" ? undefined : handlePointerLeave}
+      onPointerMove={hoverMode === "none" ? undefined : handlePointerMove}
+      style={
+        hoverMode === "none" || hoverMode === "slideRight"
+          ? { transformStyle: "flat", transformOrigin: "center center" }
+          : { rotateX, rotateY, transformStyle: "preserve-3d", transformOrigin: hoverMode === "hingeRight" ? "left center" : "center center" }
+      }
       variants={directionalVariants.scale}
       viewport={{ once: false, amount: 0.18, margin: "-8% 0px" }}
-      whileHover={{
-        y: -8,
-        scale: 1.025,
-        transition: { duration: 0.34, ease: easeOut }
-      }}
+      whileHover={
+        hoverMode === "hingeRight"
+          ? {
+              x: 14,
+              rotateY: -7,
+              scale: 1.01,
+              transition: { duration: 0.32, ease: easeOut }
+            }
+          : hoverMode === "slideRight"
+            ? {
+                x: 8,
+                transition: { duration: 0.22, ease: easeOut }
+              }
+            : hoverMode === "none"
+            ? undefined
+            : {
+                y: -8,
+                scale: 1.025,
+                transition: { duration: 0.34, ease: easeOut }
+              }
+      }
       whileInView="visible"
     >
       {children}

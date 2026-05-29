@@ -993,7 +993,7 @@ body.page-loaded main {
 .hero-chroma-text {
   display: inline-block;
   background: linear-gradient(105deg, var(--orange) 0%, var(--orange) 32%, var(--navy) 52%, var(--orange) 72%, var(--navy) 100%);
-  background-size: 260% 100%;
+  background-size: 220% 100%;
   background-clip: text;
   color: transparent;
   -webkit-background-clip: text;
@@ -1002,7 +1002,7 @@ body.page-loaded main {
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-chroma-text {
-    animation: hero-chroma-flow 4.8s ease-in-out infinite;
+    animation: hero-chroma-flow 4.8s linear infinite;
   }
 }
 
@@ -1178,6 +1178,64 @@ h1,
   box-shadow: 0 0 14px rgba(255, 90, 31, 0.45);
   animation: sword-flow 1.6s linear infinite;
   will-change: transform, opacity;
+}
+
+.about-tech-sword-card::after {
+  content: "";
+  position: absolute;
+  top: -22%;
+  left: -42%;
+  width: 34%;
+  height: 144%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(0) rotate(14deg);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.72) 18%,
+    rgba(255, 90, 31, 0.75) 48%,
+    rgba(255, 255, 255, 0.64) 82%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: transform 540ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease;
+}
+
+.about-tech-sword-card:hover::after {
+  opacity: 1;
+  transform: translateX(430%) rotate(14deg);
+}
+
+.home-hero-dashboard .card::before,
+.home-hero-dashboard .warm-skill-card::after {
+  display: none;
+}
+
+.home-hero-dashboard .card:hover,
+.home-hero-dashboard .card:focus-within,
+.home-hero-dashboard .warm-skill-card:hover,
+.home-hero-dashboard .warm-skill-card:focus-visible {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.home-hero-dashboard .card:hover > span:first-child,
+.home-hero-dashboard .card:focus-within > span:first-child,
+.home-hero-dashboard .card:hover > span:nth-child(2),
+.home-hero-dashboard .card:focus-within > span:nth-child(2) {
+  opacity: 0 !important;
+}
+
+.home-hero-dashboard .skill-card-float,
+.home-hero-dashboard .card,
+.home-hero-dashboard .warm-skill-card {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-dashboard .card {
+    animation: hero-dashboard-card-rise 520ms var(--ease-out) both;
+  }
 }
 
 .isra-graph-link {
@@ -1365,13 +1423,12 @@ h1,
 }
 
 @keyframes hero-chroma-flow {
-  0%,
-  100% {
-    background-position: 0% 50%;
+  0% {
+    background-position: 100% 50%;
   }
 
-  50% {
-    background-position: 100% 50%;
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -1646,6 +1703,18 @@ h1,
 
   70% {
     translate: 0 5px;
+  }
+}
+
+@keyframes hero-dashboard-card-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

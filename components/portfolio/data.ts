@@ -45,10 +45,11 @@ export const heroSkills: Skill[] = [
   { name: "Backend & Sistemas", description: "Paneles, lógica y módulos", icon: Server },
   { name: "Bases de Datos", description: "Gestión de información", icon: Database },
   { name: "UI/UX Design", description: "Interfaces claras y usables", icon: Layout },
+  { name: "Marketing Digital", description: "Estrategia y crecimiento online", icon: Sparkles },
   { name: "CMS & E-commerce", description: "WordPress y tiendas online", icon: ShoppingCart },
   { name: "Automatización", description: "Procesos más eficientes", icon: Sparkles },
   { name: "Ciberseguridad", description: "Seguridad web en formación", icon: Lock },
-  { name: "Infraestructura de Datos", description: "Datos, orden y escalabilidad", icon: Cpu }
+  { name: "Infraestructura de Datos", description: "Datos, orden y escalabilidad", icon: Cpu, wide: true }
 ];
 
 export const skillBars: SkillLevel[] = [
@@ -109,7 +110,7 @@ export const projects: Project[] = [
   {
     title: "Detección de Fraude Fiscal",
     category: "AI & ML",
-    tags: ["Python", "Machine Learning"],
+    tags: ["Python", "Pandas", "NumPy", "Scikit-learn", "Machine Learning", "Data Analysis"],
     description:
       "Proyecto académico de clasificación para detectar patrones sospechosos en declaraciones impositivas.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
@@ -159,6 +160,7 @@ export const courses = [
   "Fundamentos computacionales",
   "Desarrollo web",
   "Backend y sistemas web",
+  "Marketing digital & E-commerce",
   "Bases de datos",
   "Infraestructura de datos",
   "Ciberseguridad",

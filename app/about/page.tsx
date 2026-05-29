@@ -24,8 +24,8 @@ import {
   siWordpress
 } from "simple-icons";
 import { AboutHighlightTitle } from "@/components/portfolio/AboutHighlightTitle";
+import { CountUpStat } from "@/components/portfolio/CountUpStat";
 import { AboutMotionCard, AboutMotionGroup, AboutMotionItem, AboutMotionPanel } from "@/components/portfolio/AboutMotion";
-import { IsraKnowledgeGraph } from "@/components/portfolio/IsraKnowledgeGraph";
 import { SectionIntro } from "@/components/portfolio/SectionIntro";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -141,40 +141,118 @@ const translatedMoreAbout = [
   }
 ];
 
+const aboutStats = [
+  { target: 14, prefix: "+", suffix: "", label: "Tecnologias" },
+  { target: 8, prefix: "+", suffix: "", label: "Plataformas" },
+  { target: 100, prefix: "", suffix: "%", label: "A medida" }
+] as const;
+
+const aboutComplementCards = [
+  {
+    title: "Diagnostico y enfoque comercial",
+    text: "Antes de construir, definimos objetivo, publico y accion principal para que la solucion tenga direccion real de negocio.",
+    icon: BookOpen
+  },
+  {
+    title: "Proceso claro por etapas",
+    text: "Organizamos el trabajo en fases concretas: estructura, diseño, desarrollo, revision y salida en produccion sin caos.",
+    icon: Database
+  },
+  {
+    title: "Experiencia enfocada en conversion",
+    text: "Priorizamos claridad, jerarquia y llamados a la accion para que el usuario entienda rapido y avance sin friccion.",
+    icon: User
+  },
+  {
+    title: "Implementacion solida y mantenible",
+    text: "Entregamos soluciones ordenadas para crecer despues: codigo limpio, estructura reutilizable y decisiones tecnicas defendibles.",
+    icon: Shield
+  },
+  {
+    title: "Acompañamiento y mejora continua",
+    text: "No termina en la entrega: analizamos resultados, ajustamos puntos clave y proponemos mejoras para sostener rendimiento.",
+    icon: Server
+  }
+] as const;
+
 export default function AboutPage() {
   return (
     <main id="main-content" className="bg-page text-navy">
-      <section className="section-top section-padding">
+      <section className="section-top pb-16 pt-36">
         <AboutMotionGroup className="container-shell">
-          <AboutMotionItem direction="scale">
-          <SectionIntro
-            badge="Sobre nosotros"
-            title="Somos ISRA"
-            subtitle={
-              <>
-                <AboutHighlightTitle />
-                Un equipo de dos estudiantes con una convicción simple: la tecnología bien aplicada puede transformar cualquier idea en una solución real.
-              </>
-            }
-          />
+          <AboutMotionItem direction="scale" className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-white via-[#f9f6f1] to-[#f3ede4] p-7 shadow-[0_22px_70px_rgba(15,23,32,0.1)] md:p-10">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-orange/14" />
+            <div className="pointer-events-none absolute -left-24 bottom-0 h-48 w-48 rounded-full bg-teal/10" />
+            <div className="relative z-10">
+              <SectionIntro
+                badge="Sobre nosotros"
+                title="Somos ISRA"
+                subtitle={
+                  <>
+                    <AboutHighlightTitle />
+                    Un equipo de dos estudiantes con una convicción simple: la tecnología bien aplicada puede transformar cualquier idea en una solución real.
+                  </>
+                }
+              />
+              <div className="mt-7 flex flex-wrap gap-2">
+                {["Criterio técnico", "Enfoque comercial", "Construcción a medida"].map((chip, index) => (
+                  <AboutMotionItem
+                    key={chip}
+                    className="rounded-full border border-line bg-white/80 px-3 py-1.5 text-xs font-semibold text-navy/80"
+                    delay={160 + index * 90}
+                    direction="up"
+                  >
+                    {chip}
+                  </AboutMotionItem>
+                ))}
+              </div>
+            </div>
           </AboutMotionItem>
         </AboutMotionGroup>
       </section>
 
-      <section className="pb-24">
-        <AboutMotionGroup className="container-shell grid gap-10 lg:grid-cols-2 lg:items-center">
-          <AboutMotionPanel direction="left" intensity={8}>
-            <IsraKnowledgeGraph />
-          </AboutMotionPanel>
+      <section className="pb-20">
+        <AboutMotionGroup className="container-shell grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+          <AboutMotionItem direction="left" className="rounded-3xl border border-line bg-white/70 p-5 md:p-6">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <h2 className="text-2xl font-bold">Cómo trabajamos</h2>
+              <span className="rounded-full border border-orange/30 bg-orange/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-orange">
+                Proceso ISRA
+              </span>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {aboutComplementCards.map((card, index) => {
+                const Icon = card.icon;
+
+                return (
+                  <AboutMotionCard
+                    key={card.title}
+                    className="service-panel-card about-tech-sword-card relative overflow-hidden flex items-start gap-4 rounded-2xl border border-line bg-card/95 p-5"
+                    index={index}
+                    hoverMode="slideRight"
+                  >
+                    <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-orange/12 text-orange">
+                      <Icon size={19} />
+                    </span>
+                    <div>
+                      <h3 className="text-base font-bold text-navy">{card.title}</h3>
+                      <p className="mt-1 text-sm leading-7 text-muted">{card.text}</p>
+                    </div>
+                  </AboutMotionCard>
+                );
+              })}
+            </div>
+          </AboutMotionItem>
+
           <AboutMotionPanel
-            className="service-panel-card relative overflow-hidden rounded-2xl border border-line bg-card/80 p-6 shadow-[0_24px_70px_rgba(15,23,32,0.08)] backdrop-blur md:p-8"
+            className="relative overflow-hidden rounded-3xl border border-line bg-card/95 p-6 shadow-[0_20px_60px_rgba(15,23,32,0.08)] md:p-8"
             delay={120}
             direction="right"
             intensity={5}
           >
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-orange/50 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-orange/45 to-transparent" />
             <AboutMotionItem delay={80} direction="right">
-              <h2 className="service-text-pop service-text-pop-1 text-2xl font-bold">¿Qué hacemos?</h2>
+              <h2 className="text-2xl font-bold">¿Qué hacemos?</h2>
             </AboutMotionItem>
             <div className="mt-5 grid gap-5 leading-8 text-muted">
               <AboutMotionItem delay={150} direction="right">
@@ -193,18 +271,28 @@ export default function AboutPage() {
               <AboutMotionItem delay={290} direction="right">
                 <p>
                   Nuestro camino en la programación empezó por las ganas de resolver problemas complejos. Eso nos llevó a explorar
-                  lenguajes, frameworks y plataformas hasta construir una base sólida en desarrollo web y lógica de software — esto nos llevo a crear <span className="font-semibold text-teal">ISRA.</span>
+                  lenguajes, frameworks y plataformas hasta construir una base sólida en desarrollo web y lógica de software; ese camino nos llevó a crear <span className="font-semibold text-teal">ISRA.</span>
                 </p>
               </AboutMotionItem>
               <AboutMotionItem delay={360} direction="right">
                 <p>
                   Creemos que una buena solución no solo tiene que funcionar: tiene que ser clara, intuitiva y fácil de usar. Por eso apostamos al aprendizaje continuo,
                   seguimos de cerca las tecnologías modernas y, cuando no estamos trabajando en un proyecto, estamos explorando nuevas herramientas,
-                  estudiando patrones de diseño y  participando en proyectos Open-source.
+                  estudiando patrones de diseño y participando en proyectos open-source.
                 </p>
               </AboutMotionItem>
             </div>
           </AboutMotionPanel>
+        </AboutMotionGroup>
+
+        <AboutMotionGroup className="container-shell mt-10">
+          <div className="grid gap-4 sm:grid-cols-3 sm:divide-x sm:divide-line">
+            {aboutStats.map((stat, index) => (
+              <AboutMotionItem key={stat.label} className="px-4 py-2 sm:px-8" delay={120 + index * 90} direction="up">
+                <CountUpStat label={stat.label} prefix={stat.prefix} suffix={stat.suffix} target={stat.target} />
+              </AboutMotionItem>
+            ))}
+          </div>
         </AboutMotionGroup>
       </section>
 
@@ -307,3 +395,4 @@ export default function AboutPage() {
     </main>
   );
 }
+

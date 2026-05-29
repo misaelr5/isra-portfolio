@@ -3,7 +3,6 @@
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/portfolio/Badge";
 import { HomeMotionArticle, HomeMotionItem, HomeMotionPanel, HomeMotionReveal } from "@/components/portfolio/HomeMotion";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { SectionIntro } from "@/components/portfolio/SectionIntro";
@@ -11,7 +10,7 @@ import { SkillBar } from "@/components/portfolio/SkillBar";
 import { SkillCard } from "@/components/portfolio/SkillCard";
 import { buttonHover } from "@/components/portfolio/motion";
 import { TypeWriter } from "@/components/portfolio/TypeWriter";
-import { aboutCards, featuredProjects, heroSkills, skillBars } from "@/components/portfolio/data";
+import { aboutCards, heroSkills, projects, skillBars } from "@/components/portfolio/data";
 import { allServices } from "@/lib/services";
 import { defaultWhatsAppHref } from "@/lib/site";
 
@@ -32,6 +31,13 @@ const heroTitleVariants: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.035, delayChildren: 0.08 } }
 };
+
+const homePortfolioTitles = [
+  "ISRA Portfolio Web",
+  "Calculadora USD Casa de Cambio",
+  "Detección de Fraude Fiscal",
+  "Web de E-commerce"
+] as const;
 
 function AnimatedHeroWord({ text, className = "" }: { text: string; className?: string }) {
   return (
@@ -69,17 +75,13 @@ function HeroAnimatedTitle() {
 }
 
 export function HomePageClient() {
+  const homeFeaturedProjects = projects.filter((project) => homePortfolioTitles.includes(project.title as (typeof homePortfolioTitles)[number]));
+
   return (
     <main id="main-content" className="bg-page text-navy">
       <section className="relative z-10 min-h-screen overflow-hidden pt-24">
         <div className="container-shell relative z-10 grid min-h-[calc(100vh-6rem)] items-center gap-16 py-12 lg:grid-cols-2">
           <div>
-            <HomeMotionItem delay={0}>
-              <Badge>Webs que convierten visitas en consultas</Badge>
-            </HomeMotionItem>
-            <HomeMotionItem delay={80}>
-              <span className="brand-star star-accent star-accent--lg mt-6" aria-hidden="true" />
-            </HomeMotionItem>
             <HomeMotionItem delay={160}>
               <HeroAnimatedTitle />
             </HomeMotionItem>
@@ -88,8 +90,7 @@ export function HomePageClient() {
             </HomeMotionItem>
             <HomeMotionItem delay={380}>
               <p className="mt-5 max-w-xl leading-8 text-muted">
-                Te ayudamos a vender mejor con una web clara, rapida y enfocada en resultados.
-                Diseno, desarrollo y estrategia en un proceso simple para que avances sin friccion.
+                Diseñamos y desarrollamos sistemas internos, webs y soluciones digitales a medida para que tu negocio venda mejor, se organice mejor y escale con tecnología.
               </p>
             </HomeMotionItem>
             <HomeMotionItem className="mt-8 flex flex-wrap gap-4" delay={480}>
@@ -114,7 +115,7 @@ export function HomePageClient() {
             </HomeMotionItem>
           </div>
 
-          <HomeMotionPanel className="rounded-2xl border border-line bg-[#F7F4EE] p-6 shadow-[0_24px_70px_rgba(15,23,32,0.1)]" delay={220}>
+          <HomeMotionPanel className="home-hero-dashboard rounded-2xl border border-line bg-[#F7F4EE] p-6 shadow-[0_24px_70px_rgba(15,23,32,0.1)]" delay={220}>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {heroSkills.map((skill, index) => (
                 <HomeMotionReveal key={skill.name} delay={index * 45}>
@@ -265,8 +266,8 @@ export function HomePageClient() {
       <section className="relative z-10 section-padding bg-[#F7F4EE]">
         <HomeMotionReveal className="container-shell">
           <SectionIntro badge="Portfolio" title="Proyectos destacados" as="h2" subtitle="Trabajos seleccionados en desarrollo web, sistemas y data." />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((project, index) => (
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {homeFeaturedProjects.map((project, index) => (
               <HomeMotionReveal key={project.title} delay={index * 80}>
                 <ProjectCard project={project} featured />
               </HomeMotionReveal>

@@ -3,7 +3,7 @@ export const siteConfig = {
   name: "ISRA",
   tagline: "Innovación en Sistemas, Redes y Apps",
   description:
-    "Estudio digital en Córdoba, Argentina. Desarrollamos sitios web, apps, e-commerce y sistemas a medida con foco en conversión y calidad técnica.",
+    "Construimos tecnología web para negocios en crecimiento: sitios, apps, e-commerce, sistemas internos e integraciones a medida.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://isra.dev",
   locale: "es_AR",
   location: "Córdoba, Argentina",

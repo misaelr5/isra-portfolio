@@ -12,7 +12,6 @@ type InteractiveSkillCardShellProps = {
 
 export function InteractiveSkillCardShell({ children, floatDelay = "0s", selectedContent, variant = "light", wide }: InteractiveSkillCardShellProps) {
   const [selected, setSelected] = useState(false);
-  const [transform, setTransform] = useState("perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)");
   const isDark = variant === "dark";
   const isWarm = variant === "warm";
   const cardClass = isDark
@@ -26,22 +25,6 @@ export function InteractiveSkillCardShell({ children, floatDelay = "0s", selecte
     : selected
       ? "skill-card-float border-orange bg-white shadow-[0_24px_70px_rgba(255,90,31,0.22)] [animation-play-state:paused]"
       : "skill-card-float border-transparent bg-white shadow-none hover:border-orange/45 hover:bg-white hover:shadow-[0_22px_55px_rgba(255,90,31,0.12)] hover:[animation-play-state:paused]";
-
-  function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-
-    setTransform(`perspective(900px) rotateX(${-y * 12}deg) rotateY(${x * 14}deg) scale(${selected ? 1.08 : 1.045})`);
-  }
-
-  function resetTransform() {
-    setTransform(`perspective(900px) rotateX(0deg) rotateY(0deg) scale(${selected ? 1.05 : 1})`);
-  }
 
   function toggleSelected() {
     setSelected((current) => !current);
@@ -59,10 +42,8 @@ export function InteractiveSkillCardShell({ children, floatDelay = "0s", selecte
           toggleSelected();
         }
       }}
-      onPointerLeave={resetTransform}
-      onPointerMove={handlePointerMove}
       role="button"
-      style={{ animationDelay: floatDelay, transform }}
+      style={{ animationDelay: floatDelay }}
       tabIndex={0}
     >
       <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08),transparent_42%)] opacity-0 transition duration-300 group-hover:opacity-100" />
