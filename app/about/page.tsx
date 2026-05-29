@@ -178,7 +178,7 @@ const aboutComplementCards = [
 export default function AboutPage() {
   return (
     <main id="main-content" className="bg-page text-navy">
-      <section className="section-top pb-16 pt-36">
+      <section className="section-top pb-16 pt-28 md:pt-36">
         <AboutMotionGroup className="container-shell">
           <AboutMotionItem direction="scale" className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-white via-[#f9f6f1] to-[#f3ede4] p-7 shadow-[0_22px_70px_rgba(15,23,32,0.1)] md:p-10">
             <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-orange/14" />
@@ -395,4 +395,3 @@ export default function AboutPage() {
     </main>
   );
 }
-

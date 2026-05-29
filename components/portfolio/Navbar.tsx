@@ -72,12 +72,12 @@ export function Navbar() {
       variants={navScroll}
     >
       <motion.div
-        className={`mx-auto flex items-center justify-between gap-4 rounded-xl px-4 py-3 md:px-6 ${
+        className={`liquid-navbar mx-auto flex items-center justify-between gap-4 rounded-xl px-4 py-3 md:px-6 ${
           isScrolled
-            ? "max-w-6xl border border-line/70 bg-[#f3ede4]/88 shadow-[0_18px_50px_rgba(15,23,32,0.14)] backdrop-blur-xl"
-            : "max-w-7xl border border-transparent bg-transparent shadow-none"
+            ? "liquid-navbar--scrolled max-w-6xl border border-line/65 bg-[#f3ede4]/62"
+            : "liquid-navbar--top max-w-7xl border border-transparent bg-transparent shadow-none"
         }`}
-        transition={{ duration: 0.3, ease: motionEase }}
+        transition={{ duration: 0.55, ease: motionEase }}
       >
         <Link aria-label="ISRA - Inicio" className="brand-logo-link shrink-0" href="/">
           <span className="brand-logo brand-logo--nav" aria-hidden="true" />

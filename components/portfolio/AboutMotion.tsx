@@ -72,12 +72,6 @@ function staggerVariants(delay = 0): Variants {
         delayChildren: delay / 1000,
         staggerChildren: 0.08
       }
-    },
-    exit: {
-      transition: {
-        staggerChildren: 0.04,
-        staggerDirection: -1
-      }
     }
   };
 }
@@ -92,7 +86,6 @@ export function AboutMotionGroup({ children, className = "", delay = 0 }: Motion
   return (
     <motion.div
       className={className}
-      exit="exit"
       initial="hidden"
       variants={staggerVariants(delay)}
       viewport={{ once: false, amount: 0.18, margin: "-8% 0px" }}
@@ -116,7 +109,6 @@ export function AboutMotionItem({ children, className = "", delay = 0, direction
     <motion.div
       className={className}
       custom={itemDelay}
-      exit="exit"
       initial="hidden"
       variants={variants}
       viewport={{ once: false, amount: 0.22, margin: "-10% 0px" }}
@@ -164,7 +156,6 @@ export function AboutMotionPanel({
     <motion.div
       className={className}
       custom={delay}
-      exit="exit"
       initial="hidden"
       onPointerLeave={handlePointerLeave}
       onPointerMove={handlePointerMove}
@@ -211,7 +202,6 @@ export function AboutMotionCard({ children, className = "", delay = 0, index = 0
     <motion.article
       className={className}
       custom={Math.min(itemDelay, 520)}
-      exit="exit"
       initial="hidden"
       onPointerLeave={hoverMode === "none" ? undefined : handlePointerLeave}
       onPointerMove={hoverMode === "none" ? undefined : handlePointerMove}
