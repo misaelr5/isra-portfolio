@@ -28,7 +28,6 @@ import {
   type LucideIcon
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/portfolio/Reveal";
 
@@ -203,6 +202,19 @@ const stackVisuals: Record<string, { simpleIcon?: string; icon?: LucideIcon }> =
   "Open Source": { simpleIcon: "opensourceinitiative" }
 };
 
+function buildTechFallbackLogo(label: string) {
+  const initials = label
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="28" height="28" rx="6" fill="#fff4ec"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#ff5a1f">${initials}</text></svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
 function ResumeCard({ card }: { card: InfoCard }) {
   const Icon = card.icon ?? BookOpen;
 
@@ -228,7 +240,10 @@ function ResumeCard({ card }: { card: InfoCard }) {
 
 function StackTile({ group, item }: { group: string; item: string }) {
   const visual = stackVisuals[item] ?? { icon: Code2 };
-  const Icon = visual.icon;
+  const logoSrc = visual.simpleIcon
+    ? `https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/${visual.simpleIcon}.svg`
+    : buildTechFallbackLogo(item);
+  const fallbackSrc = buildTechFallbackLogo(item);
 
   return (
     <button
@@ -237,18 +252,21 @@ function StackTile({ group, item }: { group: string; item: string }) {
       title={item}
       type="button"
     >
-        {visual.simpleIcon ? (
-          <Image
-            className="h-7 w-7 object-contain"
-            src={`https://cdn.simpleicons.org/${visual.simpleIcon}/FF5A1F`}
-            alt=""
-            width={28}
-            height={28}
-            aria-hidden="true"
-          />
-        ) : Icon ? (
-          <Icon size={25} />
-        ) : null}
+      <img
+        className="h-7 w-7 object-contain"
+        src={logoSrc}
+        alt={item}
+        width={28}
+        height={28}
+        loading="lazy"
+        decoding="async"
+        onError={(event) => {
+          const target = event.currentTarget;
+          if (target.src !== fallbackSrc) {
+            target.src = fallbackSrc;
+          }
+        }}
+      />
     </button>
   );
 }

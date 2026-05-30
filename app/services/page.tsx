@@ -20,7 +20,7 @@ export default function ServicesPage() {
           <SectionIntro
             badge="Servicios"
             title="Servicios"
-            subtitle="Elegí una categoría, explorá cada solución y encontrá el camino más claro para convertir tu idea en presencia digital."
+            subtitle="Explorá nuestro catálogo y elegí el servicio que mejor se adapte a tu proyecto."
           />
         </Reveal>
       </section>
