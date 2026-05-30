@@ -22,7 +22,7 @@ const nodes: GraphNode[] = [
   {
     id: "isra",
     label: "ISRA",
-    description: "Conectamos tecnologia, diseno y estrategia para crear soluciones digitales reales.",
+    description: "Conectamos tecnología, diseño y estrategia para crear soluciones digitales reales.",
     kind: "center",
     x: 500,
     y: 380
@@ -30,7 +30,7 @@ const nodes: GraphNode[] = [
   {
     id: "web",
     label: "Desarrollo Web",
-    description: "Construccion de sitios modernos, rapidos y adaptados a cada proyecto.",
+    description: "Construcción de sitios modernos, rápidos y adaptados a cada proyecto.",
     kind: "main",
     x: 300,
     y: 170
@@ -38,7 +38,7 @@ const nodes: GraphNode[] = [
   {
     id: "apps",
     label: "Apps Web",
-    description: "Interfaces dinamicas, escalables y orientadas a la experiencia del usuario.",
+    description: "Interfaces dinámicas, escalables y orientadas a la experiencia del usuario.",
     kind: "main",
     x: 520,
     y: 120
@@ -54,7 +54,7 @@ const nodes: GraphNode[] = [
   {
     id: "networks",
     label: "Redes",
-    description: "Base tecnica para conectar servicios, infraestructura y soluciones digitales.",
+    description: "Base técnica para conectar servicios, infraestructura y soluciones digitales.",
     kind: "main",
     x: 800,
     y: 400
@@ -62,7 +62,7 @@ const nodes: GraphNode[] = [
   {
     id: "security",
     label: "Ciberseguridad",
-    description: "Buenas practicas y formacion continua para construir soluciones mas robustas.",
+    description: "Buenas prácticas y formación continua para construir soluciones más robustas.",
     kind: "main",
     x: 680,
     y: 600
@@ -70,7 +70,7 @@ const nodes: GraphNode[] = [
   {
     id: "cms",
     label: "CMS",
-    description: "Implementacion y personalizacion de plataformas como WordPress, WooCommerce, Webflow y Shopify.",
+    description: "Implementación y personalización de plataformas como WordPress, WooCommerce, Webflow y Shopify.",
     kind: "main",
     x: 440,
     y: 655
@@ -78,7 +78,7 @@ const nodes: GraphNode[] = [
   {
     id: "uiux",
     label: "UI/UX",
-    description: "Diseno claro, responsive y pensado para conversion.",
+    description: "Diseño claro, responsive y pensado para conversión.",
     kind: "main",
     x: 210,
     y: 535
@@ -86,43 +86,43 @@ const nodes: GraphNode[] = [
   {
     id: "ai",
     label: "IA",
-    description: "Exploracion de inteligencia artificial, automatizacion y nuevas tecnologias.",
+    description: "Exploración de inteligencia artificial, automatización y nuevas tecnologías.",
     kind: "main",
     x: 180,
     y: 320
   },
-  { id: "html", label: "HTML", description: "Estructura semantica para interfaces web.", kind: "sub", x: 120, y: 105 },
+  { id: "html", label: "HTML", description: "Estructura semántica para interfaces web.", kind: "sub", x: 120, y: 105 },
   { id: "css", label: "CSS", description: "Estilos visuales, responsive y experiencia de marca.", kind: "sub", x: 220, y: 65 },
-  { id: "javascript", label: "JavaScript", description: "Interactividad y logica en el navegador.", kind: "sub", x: 355, y: 55 },
-  { id: "php", label: "PHP", description: "Backend y personalizacion de plataformas web.", kind: "sub", x: 190, y: 205 },
-  { id: "python", label: "Python", description: "Automatizacion, logica y exploracion tecnica.", kind: "sub", x: 390, y: 245 },
+  { id: "javascript", label: "JavaScript", description: "Interactividad y lógica en el navegador.", kind: "sub", x: 355, y: 55 },
+  { id: "php", label: "PHP", description: "Backend y personalización de plataformas web.", kind: "sub", x: 190, y: 205 },
+  { id: "python", label: "Python", description: "Automatización, lógica y exploración técnica.", kind: "sub", x: 390, y: 245 },
   { id: "react", label: "React", description: "Interfaces modernas basadas en componentes.", kind: "sub", x: 500, y: 30 },
   { id: "next", label: "Next.js", description: "Aplicaciones web performantes con React.", kind: "sub", x: 620, y: 45 },
-  { id: "tailwind", label: "Tailwind", description: "Sistema visual rapido, consistente y responsive.", kind: "sub", x: 700, y: 110 },
+  { id: "tailwind", label: "Tailwind", description: "Sistema visual rápido, consistente y responsive.", kind: "sub", x: 700, y: 110 },
   { id: "frontend", label: "Frontend", description: "Capa visual e interactiva del producto.", kind: "sub", x: 440, y: 200 },
-  { id: "backend", label: "Backend", description: "Logica, datos e integraciones del sistema.", kind: "sub", x: 610, y: 210 },
-  { id: "dashboards", label: "Dashboards", description: "Visualizacion clara de datos y procesos.", kind: "sub", x: 850, y: 105 },
+  { id: "backend", label: "Backend", description: "Lógica, datos e integraciones del sistema.", kind: "sub", x: 610, y: 210 },
+  { id: "dashboards", label: "Dashboards", description: "Visualización clara de datos y procesos.", kind: "sub", x: 850, y: 105 },
   { id: "apis", label: "APIs", description: "Puentes ordenados entre sistemas y servicios.", kind: "sub", x: 925, y: 215 },
-  { id: "automation", label: "Automatizacion", description: "Flujos que reducen tareas repetitivas.", kind: "sub", x: 835, y: 285 },
+  { id: "automation", label: "Automatización", description: "Flujos que reducen tareas repetitivas.", kind: "sub", x: 835, y: 285 },
   { id: "internal", label: "Paneles internos", description: "Herramientas privadas para equipos y operaciones.", kind: "sub", x: 690, y: 300 },
-  { id: "connectivity", label: "Conectividad", description: "Servicios conectados con criterio tecnico.", kind: "sub", x: 915, y: 360 },
+  { id: "connectivity", label: "Conectividad", description: "Servicios conectados con criterio técnico.", kind: "sub", x: 915, y: 360 },
   { id: "infra", label: "Infraestructura", description: "Base estable para productos digitales.", kind: "sub", x: 925, y: 475 },
-  { id: "monitoring", label: "Monitoreo", description: "Observacion de servicios, estado y continuidad.", kind: "sub", x: 805, y: 520 },
+  { id: "monitoring", label: "Monitoreo", description: "Observación de servicios, estado y continuidad.", kind: "sub", x: 805, y: 520 },
   { id: "hardening", label: "Hardening", description: "Ajustes para reducir superficie de riesgo.", kind: "sub", x: 830, y: 650 },
-  { id: "best", label: "Buenas practicas", description: "Criterios tecnicos para software mas robusto.", kind: "sub", x: 720, y: 725 },
-  { id: "testing", label: "Testing", description: "Validacion para detectar problemas temprano.", kind: "sub", x: 610, y: 700 },
-  { id: "websec", label: "Seguridad web", description: "Proteccion aplicada a sitios y aplicaciones.", kind: "sub", x: 760, y: 560 },
+  { id: "best", label: "Buenas prácticas", description: "Criterios técnicos para software más robusto.", kind: "sub", x: 720, y: 725 },
+  { id: "testing", label: "Testing", description: "Validación para detectar problemas temprano.", kind: "sub", x: 610, y: 700 },
+  { id: "websec", label: "Seguridad web", description: "Protección aplicada a sitios y aplicaciones.", kind: "sub", x: 760, y: 560 },
   { id: "wordpress", label: "WordPress", description: "Sitios administrables y extensibles.", kind: "sub", x: 330, y: 715 },
-  { id: "woocommerce", label: "WooCommerce", description: "Comercio electronico sobre WordPress.", kind: "sub", x: 460, y: 735 },
-  { id: "webflow", label: "Webflow", description: "Web visual con control de diseno.", kind: "sub", x: 550, y: 720 },
+  { id: "woocommerce", label: "WooCommerce", description: "Comercio electrónico sobre WordPress.", kind: "sub", x: 460, y: 735 },
+  { id: "webflow", label: "Webflow", description: "Web visual con control de diseño.", kind: "sub", x: 550, y: 720 },
   { id: "shopify", label: "Shopify", description: "Tiendas online escalables.", kind: "sub", x: 300, y: 635 },
-  { id: "prestashop", label: "PrestaShop", description: "Ecommerce flexible para catalogos complejos.", kind: "sub", x: 555, y: 620 },
+  { id: "prestashop", label: "PrestaShop", description: "Ecommerce flexible para catálogos complejos.", kind: "sub", x: 555, y: 620 },
   { id: "responsive", label: "Responsive", description: "Interfaces adaptadas a mobile, tablet y desktop.", kind: "sub", x: 70, y: 590 },
-  { id: "conversion", label: "Conversion", description: "Diseno orientado a acciones y resultados.", kind: "sub", x: 125, y: 690 },
+  { id: "conversion", label: "Conversión", description: "Diseño orientado a acciones y resultados.", kind: "sub", x: 125, y: 690 },
   { id: "ux", label: "Experiencia de usuario", description: "Flujos claros, simples y usables.", kind: "sub", x: 245, y: 680 },
-  { id: "aiauto", label: "Automatizacion IA", description: "IA aplicada a procesos y asistentes.", kind: "sub", x: 60, y: 270 },
-  { id: "exploration", label: "Exploracion", description: "Prueba continua de nuevas capacidades.", kind: "sub", x: 70, y: 390 },
-  { id: "newtech", label: "Nuevas tecnologias", description: "Investigacion tecnica para ampliar soluciones.", kind: "sub", x: 150, y: 455 }
+  { id: "aiauto", label: "Automatización IA", description: "IA aplicada a procesos y asistentes.", kind: "sub", x: 60, y: 270 },
+  { id: "exploration", label: "Exploración", description: "Prueba continua de nuevas capacidades.", kind: "sub", x: 70, y: 390 },
+  { id: "newtech", label: "Nuevas tecnologías", description: "Investigación técnica para ampliar soluciones.", kind: "sub", x: 150, y: 455 }
 ];
 
 const links: GraphLink[] = [

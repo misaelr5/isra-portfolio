@@ -8,7 +8,7 @@ import { defaultWhatsAppHref } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Contacto",
-  description: "Escribinos para cotizar tu sitio web, app o sistema. ISRA responde desde Cordoba, Argentina.",
+  description: "Escribinos para cotizar tu sitio web, app o sistema. ISRA responde desde Córdoba, Argentina.",
   path: "/contact"
 });
 
@@ -20,12 +20,12 @@ export default function ContactPage() {
           <SectionIntro
             badge="Contacto"
             title="Hablemos de tu proyecto"
-            subtitle="Tenes una idea, una web para mejorar o necesitas una solucion digital? Escribinos y contanos que queres construir."
+            subtitle="¿Tenés una idea, una web para mejorar o necesitás una solución digital? Escribinos y contanos qué querés construir."
           />
           <div className="mt-10 max-w-3xl mx-auto text-center">
             <AnimatedSubtitle
               className="service-text-pop service-text-pop-2 text-lg font-semibold text-navy"
-              text="Tu mensaje es el primer paso para una presencia digital con mas claridad y resultados."
+              text="Tu mensaje es el primer paso para una presencia digital con más claridad y resultados."
             />
           </div>
           <div className="service-text-pop service-text-pop-3 mt-8 flex justify-center">

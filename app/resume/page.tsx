@@ -1,7 +1,10 @@
 "use client";
 
 import {
+  Activity,
   Award,
+  Bot,
+  Brain,
   BookOpen,
   Briefcase,
   Check,
@@ -15,7 +18,10 @@ import {
   Monitor,
   Network,
   Rocket,
+  Server,
   Shield,
+  ShieldCheck,
+  ShoppingCart,
   Sparkles,
   Terminal,
   WandSparkles,
@@ -40,7 +46,7 @@ type InfoCard = {
 
 const tabs: Array<{ id: TabId; label: string }> = [
   { id: "skills", label: "Habilidades" },
-  { id: "education", label: "Formacion" },
+  { id: "education", label: "Formación" },
   { id: "experience", label: "Experiencia" },
   { id: "projects", label: "Proyectos" },
   { id: "certifications", label: "Certificaciones" }
@@ -49,7 +55,7 @@ const tabs: Array<{ id: TabId; label: string }> = [
 const skillCards: InfoCard[] = [
   {
     title: "Desarrollo Web",
-    text: "Sitios modernos, rapidos y responsive con foco en diseno, claridad y conversion.",
+    text: "Sitios modernos, rápidos y responsive con foco en diseño, claridad y conversión.",
     icon: Code2
   },
   {
@@ -63,31 +69,31 @@ const skillCards: InfoCard[] = [
     icon: Rocket
   },
   {
-    title: "Seguridad e Innovacion",
-    text: "Buenas practicas, redes, testing, hardening, automatizacion e IA aplicada en formacion continua.",
+    title: "Seguridad e Innovación",
+    text: "Buenas prácticas, redes, testing, hardening, automatización e IA aplicada en formación continua.",
     icon: Shield
   }
 ];
 
 const stackGroups = {
   Frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "UI/UX", "Responsive Design"],
-  Backend: ["PHP", "Python", "Node.js", "Laravel", "APIs", "Dashboards", "Paneles internos", "Automatizacion"],
+  Backend: ["PHP", "Python", "Node.js", "Laravel", "APIs", "Dashboards", "Paneles internos", "Automatización"],
   CMS: ["WordPress", "Webflow", "Wix", "Elementor", "Odoo"],
-  "E-commerce": ["WooCommerce", "Shopify", "PrestaShop", "Tiendas online", "Catalogos online"],
+  "E-commerce": ["WooCommerce", "Shopify", "PrestaShop", "Tiendas online", "Catálogos online"],
   "Bases de datos": ["MySQL", "SQLite", "PostgreSQL", "Supabase"],
   Seguridad: ["Redes", "Ciberseguridad", "Seguridad web", "Hardening", "Testing", "Monitoreo", "Infraestructura"],
   Herramientas: ["Git", "GitHub", "VS Code", "Figma", "Docker", "Terminal", "npm", "Vercel"],
-  IA: ["IA aplicada", "Automatizacion IA", "Nuevas tecnologias", "Open Source"]
+  IA: ["IA aplicada", "Automatización IA", "Nuevas tecnologías", "Open Source"]
 };
 
 const educationCards: InfoCard[] = [
   {
     category: "Secundario",
-    title: "Bachiller en Economia",
-    institution: "Formacion secundaria",
+    title: "Bachiller en Economía",
+    institution: "Formación secundaria",
     year: "2022",
     status: "Finalizado",
-    text: "Economia, administracion, matematica, estadistica y base comercial para proyectos digitales."
+    text: "Economía, administración, matemática, estadística y base comercial para proyectos digitales."
   },
   {
     category: "Preuniversitario",
@@ -95,14 +101,14 @@ const educationCards: InfoCard[] = [
     institution: "Universidad Siglo 21",
     year: "2024",
     status: "Finalizado",
-    text: "Pensamiento logico, base tecnologica, introduccion a sistemas y programacion."
+    text: "Pensamiento lógico, base tecnológica, introducción a sistemas y programación."
   },
   {
     category: "Ciencias Computacionales",
     title: "Harvard CS50",
     institution: "Harvard",
     year: "2026",
-    status: "En formacion",
+    status: "En formación",
     text: "Fundamentos computacionales, algoritmos, estructuras de datos, estadistica y desarrollo web."
   },
   {
@@ -111,35 +117,35 @@ const educationCards: InfoCard[] = [
     institution: "Cyber Israel / INCD",
     year: "2026",
     status: "En formación",
-    text: "Seguridad web, proteccion digital, buenas practicas, redes y formacion progresiva en ciberseguridad."
+    text: "Seguridad web, protección digital, buenas prácticas, redes y formación progresiva en ciberseguridad."
   }
 ];
 
 const courseChips = ["Algoritmos", "Desarrollo web", "Backend", "Bases de datos", "Ciberseguridad", "Redes", "IA aplicada", "Arquitectura", "UI/UX"];
 
 const experienceCards: InfoCard[] = [
-  { title: "Desarrollo Web", text: "Sitios institucionales, landing pages y paginas comerciales orientadas a presencia digital.", icon: Code2 },
-  { title: "CMS y Plataformas", text: "Implementacion de webs administrables con WordPress, WooCommerce, Webflow, Shopify y PrestaShop.", icon: Layers },
-  { title: "Sistemas y Modulos", text: "Funcionalidades a medida, calculadoras, formularios, dashboards, paneles e integraciones.", icon: Database },
-  { title: "Seguridad y Mejora Continua", text: "Formacion en seguridad web, testing, buenas practicas, hardening, redes e infraestructura.", icon: Shield }
+  { title: "Desarrollo Web", text: "Sitios institucionales, landing pages y páginas comerciales orientadas a presencia digital.", icon: Code2 },
+  { title: "CMS y Plataformas", text: "Implementación de webs administrables con WordPress, WooCommerce, Webflow, Shopify y PrestaShop.", icon: Layers },
+  { title: "Sistemas y Módulos", text: "Funcionalidades a medida, calculadoras, formularios, dashboards, paneles e integraciones.", icon: Database },
+  { title: "Seguridad y Mejora Continua", text: "Formación en seguridad web, testing, buenas prácticas, hardening, redes e infraestructura.", icon: Shield }
 ];
 
 const projectCards: InfoCard[] = [
   { title: "Sitios Web Institucionales", text: "Webs profesionales para marcas, empresas, servicios y presencia digital.", icon: Code2 },
   { title: "Landing Pages Comerciales", text: "Paginas enfocadas en captar consultas, presentar servicios y convertir visitas.", icon: Rocket },
-  { title: "Tiendas Online", text: "E-commerce, catalogos digitales, productos, pedidos y canales de venta online.", icon: Briefcase },
-  { title: "Modulos Personalizados", text: "Funciones especificas para WordPress, WooCommerce, Shopify o desarrollos propios.", icon: Layers },
-  { title: "Dashboards y Paneles", text: "Herramientas internas para gestionar informacion, clientes, tareas o procesos.", icon: Database },
+  { title: "Tiendas Online", text: "E-commerce, catálogos digitales, productos, pedidos y canales de venta online.", icon: Briefcase },
+  { title: "Módulos Personalizados", text: "Funciones específicas para WordPress, WooCommerce, Shopify o desarrollos propios.", icon: Layers },
+  { title: "Dashboards y Paneles", text: "Herramientas internas para gestionar información, clientes, tareas o procesos.", icon: Database },
   { title: "Automatizaciones", text: "Integraciones, APIs y flujos digitales para reducir tareas manuales.", icon: Sparkles }
 ];
 
 const certificationCards: InfoCard[] = [
-  { title: "CS50 / Computer Science", status: "En curso", text: "Fundamentos de programacion, algoritmos, estructuras de datos y desarrollo web.", icon: Award },
-  { title: "Ciencias Computacionales", status: "Finalizado", text: "Base tecnologica, pensamiento logico y orientacion al area de sistemas.", icon: GraduationCap },
-  { title: "Roadmap de Ciberseguridad", status: "En formacion", text: "Seguridad web, redes, proteccion digital y buenas practicas informaticas.", icon: Shield },
-  { title: "Backend y Sistemas Web", status: "Formacion continua", text: "PHP, Python, bases de datos, APIs, arquitectura y logica de negocio.", icon: Database },
-  { title: "CMS & E-commerce", status: "Practica aplicada", text: "WordPress, WooCommerce, Shopify, Webflow, PrestaShop, Wix y Odoo.", icon: Layers },
-  { title: "IA y Automatizacion", status: "Exploracion continua", text: "IA aplicada, automatizacion de procesos, nuevas tecnologias y proyectos open-source.", icon: Sparkles }
+  { title: "CS50 / Computer Science", status: "En curso", text: "Fundamentos de programación, algoritmos, estructuras de datos y desarrollo web.", icon: Award },
+  { title: "Ciencias Computacionales", status: "Finalizado", text: "Base tecnológica, pensamiento lógico y orientación al área de sistemas.", icon: GraduationCap },
+  { title: "Roadmap de Ciberseguridad", status: "En formación", text: "Seguridad web, redes, protección digital y buenas prácticas informáticas.", icon: Shield },
+  { title: "Backend y Sistemas Web", status: "Formación continua", text: "PHP, Python, bases de datos, APIs, arquitectura y lógica de negocio.", icon: Database },
+  { title: "CMS & E-commerce", status: "Práctica aplicada", text: "WordPress, WooCommerce, Shopify, Webflow, PrestaShop, Wix y Odoo.", icon: Layers },
+  { title: "IA y Automatización", status: "Exploración continua", text: "IA aplicada, automatización de procesos, nuevas tecnologías y proyectos open-source.", icon: Sparkles }
 ];
 
 const allStackFilters = ["Todo", ...Object.keys(stackGroups)];
@@ -158,10 +164,10 @@ const stackVisuals: Record<string, { simpleIcon?: string; icon?: LucideIcon }> =
   Python: { simpleIcon: "python" },
   "Node.js": { simpleIcon: "nodedotjs" },
   Laravel: { simpleIcon: "laravel" },
-  APIs: { icon: FileCode2 },
+  APIs: { simpleIcon: "openapiinitiative" },
   Dashboards: { icon: LayoutDashboard },
   "Paneles internos": { icon: LayoutDashboard },
-  Automatizacion: { icon: WandSparkles },
+  Automatización: { icon: Bot },
   WordPress: { simpleIcon: "wordpress" },
   Webflow: { simpleIcon: "webflow" },
   Wix: { simpleIcon: "wix" },
@@ -170,31 +176,31 @@ const stackVisuals: Record<string, { simpleIcon?: string; icon?: LucideIcon }> =
   WooCommerce: { simpleIcon: "woocommerce" },
   Shopify: { simpleIcon: "shopify" },
   PrestaShop: { simpleIcon: "prestashop" },
-  "Tiendas online": { icon: Briefcase },
-  "Catalogos online": { icon: Layers },
+  "Tiendas online": { icon: ShoppingCart },
+  "Catálogos online": { icon: Layers },
   MySQL: { simpleIcon: "mysql" },
   SQLite: { simpleIcon: "sqlite" },
   PostgreSQL: { simpleIcon: "postgresql" },
   Supabase: { simpleIcon: "supabase" },
-  Redes: { simpleIcon: "cloudflare" },
+  Redes: { icon: Network },
   Ciberseguridad: { simpleIcon: "kalilinux" },
   "Seguridad web": { simpleIcon: "owasp" },
-  Hardening: { simpleIcon: "letsencrypt" },
+  Hardening: { icon: ShieldCheck },
   Testing: { simpleIcon: "postman" },
-  Monitoreo: { simpleIcon: "grafana" },
-  Infraestructura: { simpleIcon: "cloudflare" },
+  Monitoreo: { icon: Activity },
+  Infraestructura: { icon: Server },
   Git: { simpleIcon: "git" },
   GitHub: { simpleIcon: "github" },
-  "VS Code": { icon: Code2 },
+  "VS Code": { simpleIcon: "visualstudiocode" },
   Figma: { simpleIcon: "figma" },
   Docker: { simpleIcon: "docker" },
   Terminal: { icon: Terminal },
   npm: { simpleIcon: "npm" },
   Vercel: { simpleIcon: "vercel" },
-  "IA aplicada": { icon: Sparkles },
-  "Automatizacion IA": { icon: WandSparkles },
-  "Nuevas tecnologias": { icon: Rocket },
-  "Open Source": { icon: Code2 }
+  "IA aplicada": { icon: Brain },
+  "Automatización IA": { icon: WandSparkles },
+  "Nuevas tecnologías": { icon: Rocket },
+  "Open Source": { simpleIcon: "opensourceinitiative" }
 };
 
 function ResumeCard({ card }: { card: InfoCard }) {
@@ -266,10 +272,10 @@ export default function ResumePage() {
           <div className="service-panel-card grid gap-8 rounded-2xl border border-line bg-[#F7F4EE] p-8 shadow-[0_24px_70px_rgba(15,23,32,0.1)] lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange">ISRA</p>
-              <p className="mt-2 text-sm font-medium text-muted">Innovacion en Software, Redes y Aplicaciones</p>
+              <p className="mt-2 text-sm font-medium text-muted">Innovación en Software, Redes y Aplicaciones</p>
               <h1 className="mt-8 text-5xl font-bold leading-tight text-navy md:text-6xl">Somos ISRA</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-muted">
-                Desarrollamos sitios web, apps web, sistemas, e-commerce y modulos personalizados con foco en diseno, rendimiento,
+                Desarrollamos sitios web, apps web, sistemas, e-commerce y módulos personalizados con foco en diseño, rendimiento,
                 seguridad y soluciones reales para negocios.
               </p>
             </div>
@@ -308,8 +314,8 @@ export default function ResumePage() {
                 ))}
               </div>
               <section className="rounded-2xl border border-line bg-white p-6">
-                <h2 className="service-text-pop service-text-pop-1 text-3xl font-bold">Stack Tecnico</h2>
-                <p className="service-text-pop service-text-pop-2 mt-3 leading-7 text-muted">Tecnologias, plataformas y herramientas que usamos para construir soluciones digitales.</p>
+                <h2 className="service-text-pop service-text-pop-1 text-3xl font-bold">Stack Técnico</h2>
+                <p className="service-text-pop service-text-pop-2 mt-3 leading-7 text-muted">Tecnologías, plataformas y herramientas que usamos para construir soluciones digitales.</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {allStackFilters.map((filter) => (
                     <button
@@ -336,8 +342,8 @@ export default function ResumePage() {
           {activeTab === "education" ? (
             <div className="grid gap-8">
               <div>
-                <h2 className="text-3xl font-bold">Formacion</h2>
-                <p className="mt-3 leading-7 text-muted">Nuestro recorrido academico, cursos y areas de aprendizaje tecnico.</p>
+                <h2 className="text-3xl font-bold">Formación</h2>
+                <p className="mt-3 leading-7 text-muted">Nuestro recorrido académico, cursos y áreas de aprendizaje técnico.</p>
               </div>
               <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
                 {educationCards.map((card) => (
@@ -360,8 +366,8 @@ export default function ResumePage() {
           {activeTab === "experience" ? (
             <div className="grid gap-8">
               <div>
-                <h2 className="text-3xl font-bold">Experiencia Tecnica</h2>
-                <p className="mt-3 leading-7 text-muted">Practica aplicada en desarrollo web, CMS, sistemas y soluciones digitales.</p>
+                <h2 className="text-3xl font-bold">Experiencia Técnica</h2>
+                <p className="mt-3 leading-7 text-muted">Práctica aplicada en desarrollo web, CMS, sistemas y soluciones digitales.</p>
               </div>
               <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
                 {experienceCards.map((card) => (
@@ -389,7 +395,7 @@ export default function ResumePage() {
             <div className="grid gap-8">
               <div>
                 <h2 className="text-3xl font-bold">Certificaciones y Aprendizaje</h2>
-                <p className="mt-3 leading-7 text-muted">Formacion constante en desarrollo, software, ciberseguridad e innovacion digital.</p>
+                <p className="mt-3 leading-7 text-muted">Formación constante en desarrollo, software, ciberseguridad e innovación digital.</p>
               </div>
               <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {certificationCards.map((card) => (

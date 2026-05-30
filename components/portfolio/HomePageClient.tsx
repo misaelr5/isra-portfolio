@@ -111,7 +111,7 @@ export function HomePageClient() {
             <HomeMotionItem className="mt-7 flex flex-wrap gap-2" delay={560}>
               <span className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-navy/75">Respuesta en menos de 24h</span>
               <span className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-navy/75">Presupuesto claro desde el inicio</span>
-              <span className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-navy/75">Enfoque comercial, no solo tecnico</span>
+              <span className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-navy/75">Enfoque comercial, no solo técnico</span>
             </HomeMotionItem>
           </div>
 
@@ -138,10 +138,10 @@ export function HomePageClient() {
                     Oferta principal
                   </p>
                   <h2 className="mt-3 text-2xl font-bold leading-tight text-navy md:text-3xl">
-                    Elegi el servicio ideal y empeza a convertir trafico en clientes
+                    Elegí el servicio ideal y empezá a convertir tráfico en clientes
                   </h2>
                   <p className="mt-3 text-sm leading-7 text-muted md:text-base">
-                    Te mostramos opciones claras, con precio base y alcance concreto para que tomes decision rapido.
+                    Te mostramos opciones claras, con precio base y alcance concreto para que tomes decisión rápido.
                   </p>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export function HomePageClient() {
 
               <div className="mt-6 flex flex-col gap-3 rounded-xl border border-line bg-[#f7f4ee] p-4 md:flex-row md:items-center md:justify-between">
                 <p className="text-sm font-medium text-navy/80">
-                  Si no sabes por donde empezar, te recomendamos el plan segun objetivo, tiempo y presupuesto.
+                  Si no sabés por dónde empezar, te recomendamos el plan según objetivo, tiempo y presupuesto.
                 </p>
                 <MotionLink
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-orange px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#e04a10]"
@@ -207,10 +207,10 @@ export function HomePageClient() {
       <section id="services" className="relative z-10 section-padding bg-[#F7F4EE]">
         <HomeMotionReveal className="container-shell">
           <SectionIntro
-            badge="Por que ISRA"
-            title="Equipo tecnico con foco en negocio"
+            badge="Por qué ISRA"
+            title="Equipo técnico con foco en negocio"
             as="h2"
-            subtitle="Combinamos desarrollo, diseno y estrategia para que tu inversion digital se traduzca en consultas, ventas y crecimiento."
+            subtitle="Sobre nosotros"
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {aboutCards.map((card, index) => {
@@ -288,9 +288,9 @@ export function HomePageClient() {
             <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-teal/10 text-teal">
               <Star size={34} aria-hidden="true" />
             </div>
-            <h2 className="mt-6 text-3xl font-bold">Listo para tu proximo paso digital</h2>
+            <h2 className="mt-6 text-3xl font-bold">Listo para tu próximo paso digital</h2>
             <p className="mt-4 leading-8 text-muted">
-              Contanos que queres lanzar o mejorar y te respondemos con un plan concreto, tiempos y presupuesto desde el inicio.
+              Contanos qué querés lanzar o mejorar y te respondemos con un plan concreto, tiempos y presupuesto desde el inicio.
             </p>
             <motion.a className="mt-7 inline-flex items-center gap-2 rounded-md bg-orange px-6 py-3 font-semibold text-white transition hover:bg-[#e04a10]" href={defaultWhatsAppHref} rel="noreferrer" target="_blank" {...buttonHover}>
               Quiero cotizar ahora

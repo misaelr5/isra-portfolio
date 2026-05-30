@@ -142,15 +142,15 @@ const translatedMoreAbout = [
 ];
 
 const aboutStats = [
-  { target: 14, prefix: "+", suffix: "", label: "Tecnologias" },
+  { target: 14, prefix: "+", suffix: "", label: "Tecnologías" },
   { target: 8, prefix: "+", suffix: "", label: "Plataformas" },
   { target: 100, prefix: "", suffix: "%", label: "A medida" }
 ] as const;
 
 const aboutComplementCards = [
   {
-    title: "Diagnostico y enfoque comercial",
-    text: "Antes de construir, definimos objetivo, publico y accion principal para que la solucion tenga direccion real de negocio.",
+    title: "Diagnóstico y enfoque comercial",
+    text: "Antes de construir, definimos objetivo, público y acción principal para que la solución tenga dirección real de negocio.",
     icon: BookOpen
   },
   {
@@ -159,13 +159,13 @@ const aboutComplementCards = [
     icon: Database
   },
   {
-    title: "Experiencia enfocada en conversion",
-    text: "Priorizamos claridad, jerarquia y llamados a la accion para que el usuario entienda rapido y avance sin friccion.",
+    title: "Experiencia enfocada en conversión",
+    text: "Priorizamos claridad, jerarquía y llamados a la acción para que el usuario entienda rápido y avance sin fricción.",
     icon: User
   },
   {
-    title: "Implementacion solida y mantenible",
-    text: "Entregamos soluciones ordenadas para crecer despues: codigo limpio, estructura reutilizable y decisiones tecnicas defendibles.",
+    title: "Implementación sólida y mantenible",
+    text: "Entregamos soluciones ordenadas para crecer después: código limpio, estructura reutilizable y decisiones técnicas defendibles.",
     icon: Shield
   },
   {
