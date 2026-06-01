@@ -79,6 +79,22 @@ export default function RootLayout({
     }
   };
 
+  const servicesLd = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "@id": `${siteConfig.url}#services`,
+    name: "Servicios ISRA",
+    url: `${siteConfig.url}/services`,
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page", description: "Página orientada a conversión y captación de consultas." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sitio Web Profesional", description: "Sitio web institucional escalable y optimizado." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tienda Online / E-commerce", description: "Implementación de tiendas con foco comercial y operación." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Módulos Personalizados", description: "Desarrollo de funcionalidades e integraciones a medida." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Optimización y Rediseño Web", description: "Mejora de rendimiento, UX y conversión en webs existentes." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mantenimiento y Soporte Web", description: "Soporte técnico continuo, actualización y monitoreo." } }
+    ]
+  };
+
   return (
     <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body>
@@ -100,6 +116,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteLd)
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(servicesLd)
           }}
         />
       </body>

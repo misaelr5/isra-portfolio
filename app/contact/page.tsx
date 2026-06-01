@@ -35,6 +35,8 @@ export default function ContactPage() {
               href={defaultWhatsAppHref}
               rel="noreferrer"
               target="_blank"
+              aria-label="Cotizar por WhatsApp"
+              data-cta="contact-whatsapp"
             >
               Cotizar por WhatsApp ahora
               <ArrowRight size={18} aria-hidden="true" />
@@ -53,4 +55,3 @@ export default function ContactPage() {
     </main>
   );
 }
-

@@ -5,11 +5,17 @@ import { SectionIntro } from "@/components/portfolio/SectionIntro";
 import { certifications, courses, education } from "@/components/portfolio/data";
 import { pageMetadata } from "@/lib/metadata";
 
-export const metadata = pageMetadata({
-  title: "Formación",
-  description: "Trayectoria académica, cursos y certificaciones del equipo ISRA.",
-  path: "/academics"
-});
+export const metadata = {
+  ...pageMetadata({
+    title: "Formación",
+    description: "Trayectoria académica, cursos y certificaciones del equipo ISRA.",
+    path: "/academics"
+  }),
+  robots: {
+    index: false,
+    follow: true
+  }
+};
 
 export default function AcademicsPage() {
   return (

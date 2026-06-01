@@ -133,6 +133,15 @@ export function ServicesCatalog() {
     }, 900);
   }
 
+  function trackCta(eventName: string, serviceTitle: string) {
+    if (typeof window === "undefined") return;
+    const gtag = (window as Window & { gtag?: (...args: unknown[]) => void }).gtag;
+    gtag?.("event", eventName, {
+      service_title: serviceTitle,
+      page_location: window.location.pathname
+    });
+  }
+
   return (
     <Reveal className="container-shell py-8 md:py-14" delay={100} variant="scale">
     <section>
@@ -271,6 +280,9 @@ export function ServicesCatalog() {
                 href={whatsappUrl(activeService)}
                 rel="noreferrer"
                 target="_blank"
+                aria-label={`Cotizar ${activeService.title} por WhatsApp`}
+                data-cta="service-quote-whatsapp"
+                onClick={() => trackCta("service_quote_whatsapp_click", activeService.title)}
               >
                 Cotizar este servicio
                 <ArrowRight size={17} aria-hidden="true" />
@@ -278,6 +290,9 @@ export function ServicesCatalog() {
               <a
                 className="inline-flex items-center gap-2 rounded-md border border-orange bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-orange transition hover:bg-orange hover:text-white"
                 href="/contact"
+                aria-label={`Abrir formulario para ${activeService.title}`}
+                data-cta="service-contact-form"
+                onClick={() => trackCta("service_contact_form_click", activeService.title)}
               >
                 Formulario
               </a>
