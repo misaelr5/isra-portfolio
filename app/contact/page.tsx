@@ -8,7 +8,8 @@ import { defaultWhatsAppHref } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Contacto",
-  description: "Escribinos para cotizar tu sitio web, app o sistema. ISRA responde desde Córdoba, Argentina.",
+  description:
+    "Contactá a ISRA para cotizar tu sitio web, e-commerce o sistema a medida. Respuesta rápida por formulario o WhatsApp desde Córdoba, Argentina.",
   path: "/contact"
 });
 
@@ -22,7 +23,7 @@ export default function ContactPage() {
             title="Hablemos de tu proyecto"
             subtitle="¿Tenés una idea, una web para mejorar o necesitás una solución digital? Escribinos y contanos qué querés construir."
           />
-          <div className="mt-10 max-w-3xl mx-auto text-center">
+          <div className="mx-auto mt-10 max-w-3xl text-center">
             <AnimatedSubtitle
               className="service-text-pop service-text-pop-2 text-lg font-semibold text-navy"
               text="Tu mensaje es el primer paso para una presencia digital con más claridad y resultados."
@@ -52,3 +53,4 @@ export default function ContactPage() {
     </main>
   );
 }
+

@@ -1,4 +1,4 @@
-import { BookOpen, Brain, Check, Code2, Database, GraduationCap, Heart, Network, Server, Shield, User } from "lucide-react";
+import { Award, Calendar, ChevronDown, GraduationCap, MapPin } from "lucide-react";
 import {
   siCss,
   siElementor,
@@ -24,33 +24,19 @@ import {
   siWordpress
 } from "simple-icons";
 import { AboutHighlightTitle } from "@/components/portfolio/AboutHighlightTitle";
-import { CountUpStat } from "@/components/portfolio/CountUpStat";
 import { AboutMotionCard, AboutMotionGroup, AboutMotionItem, AboutMotionPanel } from "@/components/portfolio/AboutMotion";
+import { CountUpStat } from "@/components/portfolio/CountUpStat";
+import { CoursesKeyGrid } from "@/components/portfolio/CoursesKeyGrid";
 import { SectionIntro } from "@/components/portfolio/SectionIntro";
+import { certifications, courses, education } from "@/components/portfolio/data";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
   title: "Sobre nosotros",
-  description: "Conocé al equipo ISRA: desarrollo web, backend, UI/UX y formación en ciencias computacionales desde Córdoba.",
+  description:
+    "Conocé al equipo ISRA: desarrollo web, backend, UI/UX, automatizaciones y arquitectura de software para negocios en crecimiento.",
   path: "/about"
 });
-
-const iconMap = {
-  user: User,
-  code: Code2,
-  education: GraduationCap,
-  book: BookOpen
-};
-
-const studyIconMap = {
-  computerScience: GraduationCap,
-  logic: Brain,
-  web: Code2,
-  backend: Server,
-  security: Shield,
-  data: Database,
-  network: Network
-};
 
 const coreTechnologies = [
   { name: "Python", icon: "python" },
@@ -73,6 +59,7 @@ const platformTechnologies = [
   { name: "WordPress", icon: "wordpress" },
   { name: "WooCommerce", icon: "woocommerce" },
   { name: "Shopify", icon: "shopify" },
+  { name: "Tiendanube", icon: "tiendanube" },
   { name: "PrestaShop", icon: "prestashop" },
   { name: "Webflow", icon: "webflow" },
   { name: "Wix", icon: "wix" },
@@ -104,6 +91,7 @@ const technologyIcons: Record<string, BrandIcon> = {
   wordpress: siWordpress,
   woocommerce: siWoocommerce,
   shopify: siShopify,
+  tiendanube: siShopify,
   prestashop: siPrestashop,
   webflow: siWebflow,
   wix: siWix,
@@ -111,188 +99,104 @@ const technologyIcons: Record<string, BrandIcon> = {
   odoo: siOdoo
 };
 
-const translatedMoreAbout = [
-  {
-    title: "Intereses personales",
-    icon: "user",
-    items: ["Explorar nuevas tecnologías", "Resolver desafíos algorítmicos", "Aportar a proyectos open-source", "Crear proyectos web"]
-  },
-  {
-    title: "Filosofía de código",
-    icon: "code",
-    items: ["Código limpio y mantenible", "Foco en la experiencia de usuario", "Aprendizaje y mejora continua", "Construir pensando en escalabilidad"]
-  },
-  {
-    title: "Estudios",
-    icon: "education",
-    items: [
-      { label: "Ciencias computacionales", icon: "computerScience" },
-      { label: "Pensamiento lógico y resolución de problemas", icon: "logic" },
-      { label: "Desarrollo web", icon: "web" },
-      { label: "Desarrollo backend", icon: "backend" },
-      { label: "Ciberseguridad en formación", icon: "security" },
-      { label: "Infraestructura de datos en formación", icon: "data" }
-    ]
-  },
-  {
-    title: "Objetivos futuros",
-    icon: "book",
-    items: ["Dominar técnicas avanzadas de backend", "Construir aplicaciones web con impacto", "Contribuir a proyectos open-source", "Profundizar en plataformas y CMS"]
-  }
-];
-
 const aboutStats = [
   { target: 14, prefix: "+", suffix: "", label: "Tecnologías" },
   { target: 8, prefix: "+", suffix: "", label: "Plataformas" },
   { target: 100, prefix: "", suffix: "%", label: "A medida" }
 ] as const;
 
-const aboutComplementCards = [
+const businessImpactCards = [
   {
-    title: "Diagnóstico y enfoque comercial",
-    text: "Antes de construir, definimos objetivo, público y acción principal para que la solución tenga dirección real de negocio.",
-    icon: BookOpen
+    title: "Más consultas calificadas",
+    text: "Webs claras, mensajes estratégicos y llamados a la acción pensados para convertir mejor.",
+    metric: "+Conversión"
   },
   {
-    title: "Proceso claro por etapas",
-    text: "Organizamos el trabajo en fases concretas: estructura, diseño, desarrollo, revision y salida en produccion sin caos.",
-    icon: Database
+    title: "Operación más ordenada",
+    text: "Sistemas, automatizaciones e integraciones para reducir tareas repetitivas y trabajar con menos fricción.",
+    metric: "+Eficiencia"
   },
   {
-    title: "Experiencia enfocada en conversión",
-    text: "Priorizamos claridad, jerarquía y llamados a la acción para que el usuario entienda rápido y avance sin fricción.",
-    icon: User
-  },
-  {
-    title: "Implementación sólida y mantenible",
-    text: "Entregamos soluciones ordenadas para crecer después: código limpio, estructura reutilizable y decisiones técnicas defendibles.",
-    icon: Shield
-  },
-  {
-    title: "Acompañamiento y mejora continua",
-    text: "No termina en la entrega: analizamos resultados, ajustamos puntos clave y proponemos mejoras para sostener rendimiento.",
-    icon: Server
+    title: "Escalabilidad real",
+    text: "Arquitectura, código e infraestructura preparados para acompañar el crecimiento del proyecto.",
+    metric: "+Escala"
   }
 ] as const;
 
 export default function AboutPage() {
   return (
     <main id="main-content" className="bg-page text-navy">
-      <section className="section-top pb-16 pt-28 md:pt-36">
+      <section className="section-top pb-14 pt-28 md:pt-36">
         <AboutMotionGroup className="container-shell">
-          <AboutMotionItem direction="scale" className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-white via-[#f9f6f1] to-[#f3ede4] p-7 shadow-[0_22px_70px_rgba(15,23,32,0.1)] md:p-10">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-orange/14" />
-            <div className="pointer-events-none absolute -left-24 bottom-0 h-48 w-48 rounded-full bg-teal/10" />
-            <div className="relative z-10">
-              <SectionIntro
-                badge="Sobre nosotros"
-                title="Somos ISRA"
-                subtitle={
-                  <>
-                    <AboutHighlightTitle />
-                    Un equipo de dos estudiantes con una convicción simple: la tecnología bien aplicada puede transformar cualquier idea en una solución real.
-                  </>
-                }
-              />
-              <div className="mt-7 flex flex-wrap gap-2">
-                {["Criterio técnico", "Enfoque comercial", "Construcción a medida"].map((chip, index) => (
-                  <AboutMotionItem
-                    key={chip}
-                    className="rounded-full border border-line bg-white/80 px-3 py-1.5 text-xs font-semibold text-navy/80"
-                    delay={160 + index * 90}
-                    direction="up"
-                  >
-                    {chip}
-                  </AboutMotionItem>
-                ))}
-              </div>
-            </div>
+          <AboutMotionItem direction="scale">
+            <SectionIntro
+              badge="Sobre nosotros"
+              title="Somos ISRA"
+              subtitle={
+                <>
+                  <AboutHighlightTitle />
+                  Diseñamos y desarrollamos soluciones digitales para negocios que necesitan crecer con claridad, sistema y resultados reales.
+                </>
+              }
+            />
           </AboutMotionItem>
         </AboutMotionGroup>
       </section>
 
       <section className="pb-20">
-        <AboutMotionGroup className="container-shell grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <AboutMotionItem direction="left" className="rounded-3xl border border-line bg-white/70 p-5 md:p-6">
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <h2 className="text-2xl font-bold">Cómo trabajamos</h2>
-              <span className="rounded-full border border-orange/30 bg-orange/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-orange">
-                Proceso ISRA
-              </span>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {aboutComplementCards.map((card, index) => {
-                const Icon = card.icon;
-
-                return (
-                  <AboutMotionCard
-                    key={card.title}
-                    className="service-panel-card about-tech-sword-card relative overflow-hidden flex items-start gap-4 rounded-2xl border border-line bg-card/95 p-5"
-                    index={index}
-                    hoverMode="slideRight"
-                  >
-                    <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-orange/12 text-orange">
-                      <Icon size={19} />
-                    </span>
-                    <div>
-                      <h3 className="text-base font-bold text-navy">{card.title}</h3>
-                      <p className="mt-1 text-sm leading-7 text-muted">{card.text}</p>
-                    </div>
-                  </AboutMotionCard>
-                );
-              })}
-            </div>
-          </AboutMotionItem>
-
-          <AboutMotionPanel
-            className="relative overflow-hidden rounded-3xl border border-line bg-card/95 p-6 shadow-[0_20px_60px_rgba(15,23,32,0.08)] md:p-8"
-            delay={120}
-            direction="right"
-            intensity={5}
-          >
-            <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-orange/45 to-transparent" />
-            <AboutMotionItem delay={80} direction="right">
-              <h2 className="text-2xl font-bold">¿Qué hacemos?</h2>
+        <AboutMotionGroup className="container-shell">
+          <AboutMotionPanel className="relative overflow-hidden rounded-3xl border border-line bg-card p-6 shadow-[0_24px_70px_rgba(15,23,32,0.1)] md:p-9" direction="up" intensity={3}>
+            <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-orange/12" />
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-orange/45 to-transparent" />
+            <AboutMotionItem direction="up">
+              <h2 className="text-2xl font-bold md:text-3xl">Nuestro foco</h2>
             </AboutMotionItem>
-            <div className="mt-5 grid gap-5 leading-8 text-muted">
-              <AboutMotionItem delay={150} direction="right">
-                <p>
-                  En <span className="font-semibold text-teal">ISRA</span> trabajamos con PHP, Python, HTML, CSS, Node.js, React.js y Next.js,
-                  tenemos experiencia en plataformas como WordPress, WooCommerce, Webflow, PrestaShop y Shopify. Nos especializamos en construir
-                  aplicaciones web modernas, seguras y adaptadas a las necesidades de cada proyecto.
-                </p>
+            <div className="relative z-10 mt-6 grid gap-4">
+              <AboutMotionItem direction="up">
+                <p className="leading-8 text-muted">Trabajando con nosotros vas a tener:</p>
               </AboutMotionItem>
-              <AboutMotionItem delay={220} direction="right">
-                <p>
-                  <span className="font-semibold text-teal">Nos complementamos:</span> uno de nosotros tiene foco en backend, bases de datos y se está formando en ciberseguridad;
-                  el otro se especializa en UI/UX y en el desarrollo de módulos personalizados para CMS.
-                </p>
-              </AboutMotionItem>
-              <AboutMotionItem delay={290} direction="right">
-                <p>
-                  Nuestro camino en la programación empezó por las ganas de resolver problemas complejos. Eso nos llevó a explorar
-                  lenguajes, frameworks y plataformas hasta construir una base sólida en desarrollo web y lógica de software; ese camino nos llevó a crear <span className="font-semibold text-teal">ISRA.</span>
-                </p>
-              </AboutMotionItem>
-              <AboutMotionItem delay={360} direction="right">
-                <p>
-                  Creemos que una buena solución no solo tiene que funcionar: tiene que ser clara, intuitiva y fácil de usar. Por eso apostamos al aprendizaje continuo,
-                  seguimos de cerca las tecnologías modernas y, cuando no estamos trabajando en un proyecto, estamos explorando nuevas herramientas,
-                  estudiando patrones de diseño y participando en proyectos open-source.
-                </p>
-              </AboutMotionItem>
+              {businessImpactCards.map((item, index) => (
+                <AboutMotionCard
+                  key={item.title}
+                  className="about-tech-sword-card rounded-2xl border border-line bg-white p-4"
+                  hoverMode="hingeRight"
+                  intensity={6}
+                  index={index}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h4 className="text-sm font-bold text-navy">{item.title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-muted">{item.text}</p>
+                    </div>
+                    <span className="rounded-full border border-orange/30 bg-orange/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-orange">
+                      {item.metric.toUpperCase()}
+                    </span>
+                  </div>
+                </AboutMotionCard>
+              ))}
             </div>
           </AboutMotionPanel>
         </AboutMotionGroup>
 
         <AboutMotionGroup className="container-shell mt-10">
-          <div className="grid gap-4 sm:grid-cols-3 sm:divide-x sm:divide-line">
+          <div className="about-stats-billboard grid gap-4 sm:grid-cols-3 sm:divide-x sm:divide-line">
             {aboutStats.map((stat, index) => (
               <AboutMotionItem key={stat.label} className="px-4 py-2 sm:px-8" delay={120 + index * 90} direction="up">
-                <CountUpStat label={stat.label} prefix={stat.prefix} suffix={stat.suffix} target={stat.target} />
+                <CountUpStat label={stat.label} prefix={stat.prefix} suffix={stat.suffix} target={stat.target} durationMs={1500} />
               </AboutMotionItem>
             ))}
           </div>
+        </AboutMotionGroup>
+      </section>
+
+      <section className="section-padding">
+        <AboutMotionGroup className="container-shell">
+          <AboutMotionItem className="text-center" direction="up">
+            <h2 className="text-3xl font-bold">Más sobre nosotros</h2>
+            <span className="mt-4 inline-flex text-orange">
+              <ChevronDown size={24} />
+            </span>
+          </AboutMotionItem>
         </AboutMotionGroup>
       </section>
 
@@ -310,12 +214,7 @@ export default function AboutPage() {
                 className="service-panel-card group flex min-h-[118px] flex-col items-center justify-center gap-3 rounded-xl border border-line bg-[#F3EDE4] p-4 text-center transition duration-500 ease-out hover:border-purple/60 hover:bg-[#F3EDE4] hover:shadow-[0_18px_42px_rgba(255,90,31,0.16)]"
               >
                 <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/5 transition duration-300 group-hover:bg-purple/15">
-                  <svg
-                    aria-hidden="true"
-                    className="h-7 w-7 transition duration-300 group-hover:scale-110"
-                    role="img"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg aria-hidden="true" className="h-7 w-7 transition duration-300 group-hover:scale-110" role="img" viewBox="0 0 24 24">
                     <path d={technologyIcons[technology.icon].path} fill={`#${technologyIcons[technology.icon].hex}`} />
                   </svg>
                 </span>
@@ -338,12 +237,7 @@ export default function AboutPage() {
                 className="service-panel-card group flex min-h-[118px] flex-col items-center justify-center gap-3 rounded-xl border border-line bg-[#F3EDE4] p-4 text-center transition duration-500 ease-out hover:border-teal/60 hover:bg-[#F3EDE4] hover:shadow-[0_18px_42px_rgba(255,90,31,0.14)]"
               >
                 <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/5 transition duration-300 group-hover:bg-teal/15">
-                  <svg
-                    aria-hidden="true"
-                    className="h-7 w-7 transition duration-300 group-hover:scale-110"
-                    role="img"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg aria-hidden="true" className="h-7 w-7 transition duration-300 group-hover:scale-110" role="img" viewBox="0 0 24 24">
                     <path d={technologyIcons[technology.icon].path} fill={`#${technologyIcons[technology.icon].hex}`} />
                   </svg>
                 </span>
@@ -354,41 +248,81 @@ export default function AboutPage() {
         </AboutMotionGroup>
       </section>
 
+      <section className="section-padding pt-2">
+        <AboutMotionGroup className="container-shell">
+          <AboutMotionItem direction="up">
+            <SectionIntro badge="Formación" title="Trayectoria académica" />
+          </AboutMotionItem>
+        </AboutMotionGroup>
+      </section>
+
+      <section className="pb-24">
+        <AboutMotionGroup className="container-shell grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {education.map((item, index) => (
+            <AboutMotionCard key={item.title} className="service-panel-card rounded-2xl border border-line bg-card p-6" hoverMode="none" index={index}>
+              <GraduationCap className="text-teal" size={34} aria-hidden="true" />
+              <h2 className="mt-5 text-xl font-bold">{item.title}</h2>
+              <p className="mt-3 font-semibold text-navy">{item.institution}</p>
+              <p className="mt-1 text-sm text-muted">{item.program}</p>
+              <div className="mt-5 flex flex-wrap gap-3 text-sm text-muted">
+                <span className="inline-flex items-center gap-1">
+                  <Calendar size={15} aria-hidden="true" />
+                  {item.date}
+                </span>
+                {item.place ? (
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin size={15} aria-hidden="true" />
+                    {item.place}
+                  </span>
+                ) : null}
+                {item.grade ? (
+                  <span className="inline-flex items-center gap-1">
+                    <Award size={15} aria-hidden="true" />
+                    {item.grade}
+                  </span>
+                ) : null}
+              </div>
+              <ul className="mt-6 grid gap-3">
+                {item.bullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-3 text-sm leading-6 text-muted">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </AboutMotionCard>
+          ))}
+        </AboutMotionGroup>
+      </section>
+
+      <section className="section-padding bg-[#F7F4EE]">
+        <AboutMotionGroup className="container-shell">
+          <AboutMotionItem className="text-center" direction="up">
+            <h2 className="service-text-pop service-text-pop-1 text-3xl font-bold" data-reveal>
+              Cursos clave
+            </h2>
+          </AboutMotionItem>
+          <CoursesKeyGrid courses={courses} />
+        </AboutMotionGroup>
+      </section>
+
       <section className="section-padding">
         <AboutMotionGroup className="container-shell">
-          <AboutMotionItem className="text-center" direction="scale">
-            <h2 className="text-3xl font-bold">Más sobre nosotros</h2>
+          <AboutMotionItem className="text-center" direction="up">
+            <h2 className="service-text-pop service-text-pop-1 text-3xl font-bold" data-reveal>
+              Certificaciones
+            </h2>
           </AboutMotionItem>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {translatedMoreAbout.map((card, cardIndex) => {
-              const Icon = iconMap[card.icon as keyof typeof iconMap];
-              return (
-                <AboutMotionCard key={card.title} index={cardIndex} className="service-panel-card rounded-2xl border border-line bg-card p-6">
-                  <div className="flex items-center gap-4">
-                    <span className="grid h-12 w-12 place-items-center rounded-xl bg-purple/15 text-purple">
-                      <Icon size={23} />
-                    </span>
-                    <h3 className="text-xl font-bold">{card.title}</h3>
-                  </div>
-                  <ul className="mt-6 grid gap-3">
-                    {card.items.map((item, index) => {
-                      const label = typeof item === "string" ? item : item.label;
-                      const ItemIcon =
-                        typeof item === "string" ? (index % 2 === 0 ? Check : Heart) : studyIconMap[item.icon as keyof typeof studyIconMap];
-
-                      return (
-                        <li key={label} className="flex items-center gap-3 text-sm text-muted">
-                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-teal/10 text-teal">
-                            <ItemIcon size={16} />
-                          </span>
-                          {label}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </AboutMotionCard>
-              );
-            })}
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {certifications.map((cert, index) => (
+              <AboutMotionCard key={cert.title} className="service-panel-card rounded-2xl border border-line bg-card p-6" hoverMode="none" index={index}>
+                <h3 className="text-xl font-bold">{cert.title}</h3>
+                <p className="mt-2 text-sm font-semibold text-orange">
+                  {cert.platform} · {cert.year}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-muted">{cert.description}</p>
+              </AboutMotionCard>
+            ))}
           </div>
         </AboutMotionGroup>
       </section>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 import { AmbientBackground } from "@/components/portfolio/AmbientBackground";
@@ -30,11 +30,55 @@ export const metadata: Metadata = {
   }
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ff5a1f"
+};
+
 export default function RootLayout({
   children
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${siteConfig.url}#organization`,
+    name: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    areaServed: "Argentina",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Córdoba",
+      addressCountry: "AR"
+    },
+    email: siteConfig.email,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        telephone: `+${siteConfig.whatsapp}`,
+        areaServed: "AR",
+        availableLanguage: ["es"]
+      }
+    ],
+    sameAs: [siteConfig.social.github, siteConfig.social.linkedin, siteConfig.social.instagram]
+  };
+
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}#website`,
+    url: siteConfig.url,
+    name: siteConfig.name,
+    inLanguage: "es-AR",
+    publisher: {
+      "@id": `${siteConfig.url}#organization`
+    }
+  };
+
   return (
     <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body>
@@ -49,15 +93,13 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: siteConfig.name,
-              description: siteConfig.description,
-              url: siteConfig.url,
-              email: siteConfig.email,
-              areaServed: siteConfig.location
-            })
+            __html: JSON.stringify(organizationLd)
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteLd)
           }}
         />
       </body>

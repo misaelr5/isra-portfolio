@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Filter, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { Reveal } from "@/components/portfolio/Reveal";
 import { ProjectCard } from "./ProjectCard";
 import { projects, type Project } from "./data";
@@ -13,21 +13,22 @@ const filters: Array<"Todos" | Project["category"]> = ["Todos", "Web", "Tiendas"
 export function ProjectsFilter() {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("Todos");
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
 
   const filteredProjects = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
+    const normalized = deferredQuery.trim().toLowerCase();
 
     return projects.filter((project) => {
       const matchesFilter = activeFilter === "Todos" || project.category === activeFilter;
       const searchable = `${project.title} ${project.description} ${project.tags.join(" ")}`.toLowerCase();
       return matchesFilter && searchable.includes(normalized);
     });
-  }, [activeFilter, query]);
+  }, [activeFilter, deferredQuery]);
 
   return (
     <>
-      <Reveal className="container-shell mt-14" delay={60}>
-        <section className="service-panel-card rounded-2xl bg-card p-4">
+      <Reveal className="container-shell mt-10 md:mt-14" delay={60}>
+        <section className="service-panel-card rounded-2xl bg-card p-3 md:p-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center gap-2 overflow-x-auto pb-1 xl:overflow-visible xl:pb-0">
               <span className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-semibold text-navy">
@@ -54,7 +55,7 @@ export function ProjectsFilter() {
             <label className="relative block xl:w-72">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-faint" size={18} />
               <input
-                className="w-full rounded-xl border border-line bg-page py-3 pl-11 pr-4 text-navy placeholder:text-faint focus:border-teal focus:outline-none"
+                className="w-full rounded-xl border border-line bg-page py-2.5 pl-11 pr-4 text-navy placeholder:text-faint focus:border-teal focus:outline-none md:py-3"
                 placeholder="Buscar proyectos..."
                 type="search"
                 value={query}
@@ -65,7 +66,7 @@ export function ProjectsFilter() {
         </section>
       </Reveal>
       <Reveal className="container-shell" delay={120}>
-        <section className="grid gap-6 py-14 md:grid-cols-2 lg:grid-cols-3">
+        <section className="grid gap-4 py-10 md:grid-cols-2 md:gap-6 md:py-14 lg:grid-cols-3">
           {filteredProjects.length === 0 ? (
             <p className="service-text-pop service-text-pop-2 col-span-full rounded-2xl border border-line bg-card p-8 text-center text-muted">
               No hay proyectos con ese filtro. Probá otra categoría o limpiá la búsqueda.

@@ -13,7 +13,6 @@ import {
   Server,
   type LucideIcon
 } from "lucide-react";
-import { siteConfig } from "@/lib/site";
 
 export type Skill = {
   name: string;
@@ -63,22 +62,21 @@ export const skillBars: SkillLevel[] = [
 
 export const featuredProjects: Project[] = [
   {
-    title: "ISRA Portfolio Web",
+    title: "Portfolio Web de ISRA",
     category: "Web",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lucide React", "Webs"],
     description:
       "Presencia digital del estudio con catálogo de servicios, portfolio, formulario de contacto y foco en conversión comercial.",
     image: "/images/projects/isra-portfolio-web.png",
     imageAlt: "Portfolio web de ISRA en vista desktop",
-    repoUrl: "https://github.com/misaelr5/isra-portfolio",
-    demoUrl: siteConfig.url
+    repoUrl: "https://github.com/misaelr5/isra-portfolio"
   }
 ];
 
 export const projects: Project[] = [
   ...featuredProjects,
   {
-    title: "ISRA Focus Pomodoro",
+    title: "App de Enfoque Pomodoro",
     category: "Apps",
     tags: ["Electron", "JavaScript", "CSS", "HTML", "Productividad", "Pomodoro"],
     description:
@@ -88,7 +86,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/misaelr5/ISRA-FOCUS"
   },
   {
-    title: "MyCode CRM",
+    title: "CRM Comercial",
     category: "Apps",
     tags: ["Python", "Flask", "SQLite", "HTML", "CSS", "JavaScript", "CRM"],
     description:
@@ -98,7 +96,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/misaelr5/CRM-FOR-CS50X"
   },
   {
-    title: "Calculadora USD Casa de Cambio",
+    title: "Calculadora de Divisas",
     category: "Apps",
     tags: ["HTML", "CSS", "JavaScript", "WordPress", "Shortcode", "Finanzas", "Modulo"],
     description:
@@ -108,7 +106,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/misaelr5/calculadora-usd-casa-cambio"
   },
   {
-    title: "Detección de Fraude Fiscal",
+    title: "Sistema de Detección de Fraude Fiscal",
     category: "AI & ML",
     tags: ["Python", "Pandas", "NumPy", "Scikit-learn", "Machine Learning", "Data Analysis"],
     description:
@@ -117,7 +115,7 @@ export const projects: Project[] = [
     imageAlt: "Dashboard de análisis de datos"
   },
   {
-    title: "Web de E-commerce",
+    title: "E-commerce de Indumentaria",
     category: "Tiendas",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Tiendanube", "Tiendas", "Webs"],
     description:
@@ -126,6 +124,17 @@ export const projects: Project[] = [
     imageAlt: "Ecommerce de indumentaria MYCODE en desktop y mobile",
     repoUrl: "https://github.com/misaelr5/mi-tienda",
     demoUrl: "https://e-commerceisra.netlify.app/"
+  },
+  {
+    title: "Landing para Profesional",
+    category: "Web",
+    tags: ["HTML", "CSS", "JavaScript", "Landing Page", "Responsive Design", "UI/UX"],
+    description:
+      "Landing page orientada a profesionales para presentar servicios, propuesta de valor y contacto directo con una estética moderna y enfoque en conversión.",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Landing profesional de arquitectura en vista desktop",
+    repoUrl: "https://github.com/misaelr5/landing-arquitecto-ficticio",
+    demoUrl: "https://landing-pageisra.netlify.app/"
   },
   {
     title: "Panel Administrativo Modular",
@@ -224,7 +233,7 @@ export const education = [
     institution: "Universidad Siglo 21",
     program: "Preparación académica orientada al ingreso universitario, método de estudio y adaptación a entornos de mayor exigencia.",
     date: "Preuniversitario",
-    place: "En formación",
+    place: "",
     grade: "Siglo 21",
     bullets: [
       "Refuerzo en comprensión, análisis, lógica y pensamiento crítico.",

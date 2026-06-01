@@ -27,6 +27,7 @@ import {
   WandSparkles,
   type LucideIcon
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/portfolio/Reveal";
@@ -252,14 +253,13 @@ function StackTile({ group, item }: { group: string; item: string }) {
       title={item}
       type="button"
     >
-      <img
+      <Image
         className="h-7 w-7 object-contain"
         src={logoSrc}
         alt={item}
         width={28}
         height={28}
         loading="lazy"
-        decoding="async"
         onError={(event) => {
           const target = event.currentTarget;
           if (target.src !== fallbackSrc) {

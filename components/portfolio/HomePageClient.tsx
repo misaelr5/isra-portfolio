@@ -12,7 +12,7 @@ import { buttonHover } from "@/components/portfolio/motion";
 import { TypeWriter } from "@/components/portfolio/TypeWriter";
 import { aboutCards, heroSkills, projects, skillBars } from "@/components/portfolio/data";
 import { allServices } from "@/lib/services";
-import { defaultWhatsAppHref } from "@/lib/site";
+import { defaultWhatsAppHref, whatsappLink } from "@/lib/site";
 
 const MotionLink = motion(Link);
 
@@ -33,15 +33,15 @@ const heroTitleVariants: Variants = {
 };
 
 const homePortfolioTitles = [
-  "ISRA Portfolio Web",
-  "Calculadora USD Casa de Cambio",
-  "Detección de Fraude Fiscal",
-  "Web de E-commerce"
+  "Portfolio Web de ISRA",
+  "Calculadora de Divisas",
+  "Sistema de Detección de Fraude Fiscal",
+  "E-commerce de Indumentaria"
 ] as const;
 
 function AnimatedHeroWord({ text, className = "" }: { text: string; className?: string }) {
   return (
-    <span className={className} aria-label={text}>
+    <span className={className} aria-label={text} data-text={text}>
       {Array.from(text).map((letter, index) => (
         <motion.span
           aria-hidden="true"
@@ -61,7 +61,7 @@ function HeroAnimatedTitle() {
   return (
     <motion.h1
       aria-label="Hola, somos ISRA"
-      className="mt-6 overflow-visible text-5xl font-bold leading-tight text-navy"
+      className="mt-6 overflow-visible text-4xl font-bold leading-tight text-navy md:text-5xl"
       initial="hidden"
       variants={heroTitleVariants}
       viewport={{ once: true, amount: 0.8 }}
@@ -76,11 +76,12 @@ function HeroAnimatedTitle() {
 
 export function HomePageClient() {
   const homeFeaturedProjects = projects.filter((project) => homePortfolioTitles.includes(project.title as (typeof homePortfolioTitles)[number]));
+  const homeFinalCtaHref = whatsappLink("Hola, quiero cotizar ahora. Vi tu portfolio y quiero avanzar con mi proyecto.");
 
   return (
     <main id="main-content" className="bg-page text-navy">
-      <section className="relative z-10 min-h-screen overflow-hidden pt-24">
-        <div className="container-shell relative z-10 grid min-h-[calc(100vh-6rem)] items-center gap-16 py-12 lg:grid-cols-2">
+      <section className="relative z-10 overflow-hidden pt-24 md:min-h-screen">
+        <div className="container-shell relative z-10 grid items-center gap-10 py-10 md:min-h-[calc(100vh-6rem)] md:gap-16 md:py-12 lg:grid-cols-2">
           <div>
             <HomeMotionItem delay={160}>
               <HeroAnimatedTitle />
@@ -208,9 +209,8 @@ export function HomePageClient() {
         <HomeMotionReveal className="container-shell">
           <SectionIntro
             badge="Por qué ISRA"
-            title="Equipo técnico con foco en negocio"
+            title="Sobre nosotros"
             as="h2"
-            subtitle="Sobre nosotros"
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {aboutCards.map((card, index) => {
@@ -292,7 +292,7 @@ export function HomePageClient() {
             <p className="mt-4 leading-8 text-muted">
               Contanos qué querés lanzar o mejorar y te respondemos con un plan concreto, tiempos y presupuesto desde el inicio.
             </p>
-            <motion.a className="mt-7 inline-flex items-center gap-2 rounded-md bg-orange px-6 py-3 font-semibold text-white transition hover:bg-[#e04a10]" href={defaultWhatsAppHref} rel="noreferrer" target="_blank" {...buttonHover}>
+            <motion.a className="mt-7 inline-flex items-center gap-2 rounded-md bg-orange px-6 py-3 font-semibold text-white transition hover:bg-[#e04a10]" href={homeFinalCtaHref} rel="noreferrer" target="_blank" {...buttonHover}>
               Quiero cotizar ahora
               <ArrowRight size={18} aria-hidden="true" />
             </motion.a>

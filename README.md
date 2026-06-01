@@ -1,54 +1,60 @@
-# ISRA — Sitio web oficial
+# ISRA Portfolio Web
 
-Sitio de **ISRA** (Innovación en Sistemas, Redes y Apps): estudio digital en Córdoba, Argentina. Presenta servicios, portfolio, formación y contacto.
+Portfolio oficial de **ISRA** (Innovación en Sistemas, Redes y Apps), enfocado en presentar servicios, proyectos, trayectoria y canales de contacto con una experiencia visual moderna y orientada a conversión.
+
+## Finalidad del portfolio
+- Mostrar autoridad técnica y comercial.
+- Convertir visitas en consultas (WhatsApp y formulario).
+- Exponer proyectos reales con contexto, stack y enlaces.
+- Comunicar propuesta de valor, servicios y formación de forma clara.
+
+## Qué se trabajó en esta iteración
+- Rediseño y simplificación de secciones clave de `Nosotros`.
+- Mejora de microinteracciones y animaciones de entrada.
+- Optimización fuerte para mobile (espaciado, jerarquía, densidad visual, interacción táctil).
+- Optimización SEO técnica:
+  - metadata global y por página,
+  - Open Graph/Twitter,
+  - canonicales,
+  - `robots`,
+  - `sitemap`,
+  - `manifest`,
+  - datos estructurados (`Schema.org`).
+- Mejora de búsqueda de proyectos con input fluido (`useDeferredValue`).
+- Limpieza general de contenido y consistencia textual.
+- Actualización del portfolio de proyectos:
+  - agregado de proyecto “Landing para Profesional”,
+  - ajuste de títulos para coherencia,
+  - proyecto “Portfolio Web de ISRA” linkeado al repo y sin botón de demo.
 
 ## Stack
-
 - Next.js 14 (App Router)
-- React 18
-- TypeScript
+- React 18 + TypeScript
 - Tailwind CSS
+- Framer Motion
 
-## Configuración
-
-1. Copiá `.env.example` a `.env.local` y definí tu dominio:
-
-```bash
-NEXT_PUBLIC_SITE_URL=https://tu-dominio.com
-```
-
-2. Editá contacto y redes en `lib/site.ts` (email, WhatsApp, LinkedIn, GitHub).
-
-3. Configurá el formulario con [Resend](https://resend.com):
-   - `RESEND_API_KEY` — API key
-   - `RESEND_FROM_EMAIL` — remitente verificado (ej. `ISRA <contacto@tudominio.com>`)
-   - `CONTACT_TO_EMAIL` — destino de las consultas  
-   Sin estas variables, el formulario abre el cliente de correo (`mailto`) como respaldo.
-
-4. Ajustá precios orientativos en `lib/services.ts` si cambian tus tarifas.
-
-5. Reemplazá los SVG de marca en `public/images/` si tenés logo final en PNG/SVG propio.
-
-## Desarrollo local
-
+## Ejecutar en local
 ```bash
 npm install
 npm run dev
 ```
 
-Abrí [http://localhost:3000](http://localhost:3000).
+Abrir en: `http://localhost:3000`
 
-## Producción
+## Variables recomendadas
+Crear `.env.local`:
 
 ```bash
-npm run build
-npm run start
+NEXT_PUBLIC_SITE_URL=https://tu-dominio.com
+RESEND_API_KEY=...
+RESEND_FROM_EMAIL=...
+CONTACT_TO_EMAIL=...
 ```
 
-## Estructura
+## Estructura rápida
+- `app/`: rutas, metadata, SEO técnico.
+- `components/portfolio/`: UI y secciones.
+- `lib/site.ts`: datos de marca, contacto y redes.
+- `lib/metadata.ts`: plantilla SEO y social.
+- `public/images/`: assets visuales.
 
-- `app/` — rutas y metadata SEO
-- `components/portfolio/` — UI del sitio
-- `lib/site.ts` — datos de contacto y WhatsApp
-- `lib/metadata.ts` — Open Graph y plantillas SEO
-- `public/images/` — logo, favicon y OG

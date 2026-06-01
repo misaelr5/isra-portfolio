@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type CountUpStatProps = {
   target: number;
@@ -13,8 +13,34 @@ type CountUpStatProps = {
 export function CountUpStat({ target, label, prefix = "", suffix = "", durationMs = 1100 }: CountUpStatProps) {
   const [value, setValue] = useState(0);
   const [pulse, setPulse] = useState(false);
+  const [started, setStarted] = useState(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!rootRef.current || started) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry?.isIntersecting) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(rootRef.current);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) {
+      return;
+    }
+
     setValue(0);
     const steps = Math.max(target, 1);
     const tickMs = Math.max(18, Math.floor(durationMs / steps));
@@ -31,10 +57,10 @@ export function CountUpStat({ target, label, prefix = "", suffix = "", durationM
     }, tickMs);
 
     return () => window.clearInterval(interval);
-  }, [durationMs, target]);
+  }, [durationMs, started, target]);
 
   return (
-    <div className="text-center">
+    <div className="text-center" ref={rootRef}>
       <p className={`text-4xl font-black tracking-tight tabular-nums text-orange transition-transform duration-100 ${pulse ? "scale-[1.03]" : "scale-100"}`}>
         {prefix}
         {value}

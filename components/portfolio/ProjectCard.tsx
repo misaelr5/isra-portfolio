@@ -38,9 +38,9 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           </span>
         ) : null}
       </div>
-      <div className="p-5">
+      <div className="p-4 md:p-5">
         <h2 className="text-lg font-bold leading-snug text-navy">{project.title}</h2>
-        <p className="mt-3 min-h-16 text-sm leading-6 text-muted">{project.description}</p>
+        <p className="mt-3 min-h-0 text-sm leading-6 text-muted md:min-h-16">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span key={tag} className="rounded-full border border-line px-3 py-1 text-xs text-muted">
@@ -48,7 +48,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             </span>
           ))}
         </div>
-        <div className={`mt-5 flex flex-wrap items-center gap-4 ${featured ? "justify-start" : "justify-center"}`}>
+        <div className={`mt-5 flex flex-wrap items-center gap-3 md:gap-4 ${featured ? "justify-start" : "justify-center"}`}>
           {featured ? (
             <MotionLink className="inline-flex items-center gap-1 text-sm font-semibold text-teal" href="/projects" {...buttonHover}>
                 Ver detalles
@@ -57,7 +57,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           ) : null}
           {project.demoUrl ? (
             <motion.a
-              className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-teal"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-navy transition-colors hover:text-teal md:text-sm"
               href={project.demoUrl}
               rel="noreferrer"
               target="_blank"
@@ -69,7 +69,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           ) : null}
           {project.repoUrl ? (
             <motion.a
-              className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-teal"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-navy transition-colors hover:text-teal md:text-sm"
               href={project.repoUrl}
               rel="noreferrer"
               target="_blank"

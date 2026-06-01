@@ -3,9 +3,9 @@
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ArrowRight, Check, Clock, Tag } from "lucide-react";
 import type { CSSProperties } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/portfolio/Reveal";
-import { allServices, pricingDisclaimer, serviceCategories, type Service } from "@/lib/services";
+import { allServices, pricingDisclaimer, type Service } from "@/lib/services";
 import { whatsappCta } from "@/lib/site";
 
 function whatsappUrl(service: Service) {
@@ -61,18 +61,27 @@ const letterVariants: Variants = {
 };
 
 function FloatingTitle({ title }: { title: string }) {
+  const words = title.split(" ");
+
   return (
     <h2 className="mt-4 max-w-2xl text-3xl font-bold text-navy md:text-5xl" aria-label={title}>
-      {Array.from(title).map((letter, index) => (
-        <motion.span
-          aria-hidden="true"
-          className="inline-block"
-          custom={index}
-          key={`${title}-${letter}-${index}`}
-          variants={letterVariants}
-        >
-          {letter === " " ? "\u00a0" : letter}
-        </motion.span>
+      {words.map((word, wordIndex) => (
+        <span className="mr-[0.24em] inline-block whitespace-nowrap" key={`${title}-${word}-${wordIndex}`}>
+          {Array.from(word).map((letter, letterIndex) => {
+            const index = words.slice(0, wordIndex).join("").length + wordIndex + letterIndex;
+            return (
+              <motion.span
+                aria-hidden="true"
+                className="inline-block"
+                custom={index}
+                key={`${title}-${word}-${letter}-${letterIndex}`}
+                variants={letterVariants}
+              >
+                {letter}
+              </motion.span>
+            );
+          })}
+        </span>
       ))}
     </h2>
   );
@@ -80,14 +89,11 @@ function FloatingTitle({ title }: { title: string }) {
 
 export function ServicesCatalog() {
   const [activeTitle, setActiveTitle] = useState(allServices[0].title);
-  const [category, setCategory] = useState<(typeof serviceCategories)[number]>("Todos");
   const [pendingTitle, setPendingTitle] = useState(allServices[0].title);
   const [isSwitching, setIsSwitching] = useState(false);
   const switchTimer = useRef<number | null>(null);
 
-  const filteredServices = useMemo(() => {
-    return allServices.filter((service) => category === "Todos" || service.category === category);
-  }, [category]);
+  const filteredServices = allServices;
 
   const activeService = filteredServices.find((service) => service.title === activeTitle) ?? filteredServices[0] ?? allServices[0];
   const ActiveIcon = activeService.icon;
@@ -128,34 +134,17 @@ export function ServicesCatalog() {
   }
 
   return (
-    <Reveal className="container-shell py-14" delay={100} variant="scale">
+    <Reveal className="container-shell py-8 md:py-14" delay={100} variant="scale">
     <section>
       <motion.div
-        className="service-dashboard no-brand-card grid overflow-hidden rounded-2xl border border-line bg-[#F7F4EE] shadow-[0_28px_80px_rgba(15,23,32,0.12)] lg:grid-cols-[320px_1fr]"
+        className="service-dashboard no-brand-card grid overflow-hidden rounded-2xl border border-line bg-[#F7F4EE] shadow-[0_28px_80px_rgba(15,23,32,0.12)]"
         initial="hidden"
         variants={dashboardVariants}
         viewport={{ once: true, amount: 0.18 }}
         whileInView="visible"
       >
-        <aside className="border-b border-line bg-white/55 p-4 lg:border-b-0 lg:border-r">
-          <div className="rounded-xl border border-line bg-[#F3EDE4] p-3">
-            <div className="flex flex-wrap gap-2">
-              {serviceCategories.map((item) => (
-                <button
-                  key={item}
-                  className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-500 ease-out ${
-                    category === item ? "border-orange bg-orange text-white" : "border-line bg-white text-navy/70 hover:border-orange hover:text-orange"
-                  }`}
-                  type="button"
-                  onClick={() => setCategory(item)}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-4 grid gap-2">
+        <aside className="border-b border-line bg-white/55 p-3 md:p-4">
+          <div className="flex gap-2 overflow-x-auto pb-1 lg:grid lg:grid-cols-6 lg:overflow-visible lg:pb-0">
             {filteredServices.map((service) => {
               const Icon = service.icon;
               const selected = service.title === pendingTitle;
@@ -163,7 +152,7 @@ export function ServicesCatalog() {
               return (
                 <button
                   key={service.title}
-                  className={`group flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 ${
+                  className={`group flex min-w-[220px] items-center gap-3 rounded-xl border p-3 text-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 lg:min-w-0 ${
                     selected
                       ? "border-orange bg-orange text-white shadow-[0_16px_36px_rgba(255,90,31,0.22)]"
                       : "border-line bg-white text-navy hover:border-orange/50 hover:bg-[#F7F4EE]"
@@ -190,7 +179,7 @@ export function ServicesCatalog() {
           </div>
         </aside>
 
-        <div className="relative min-h-[620px] overflow-hidden p-5 md:p-8">
+        <div className="relative min-h-0 overflow-hidden p-4 md:p-8">
           <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-orange/10 blur-3xl" />
           <AnimatePresence mode="wait">
           <motion.div
@@ -233,7 +222,7 @@ export function ServicesCatalog() {
 
             <motion.p className="mt-6 max-w-3xl text-lg leading-8 text-muted" variants={floatItemVariants}>{activeService.description}</motion.p>
 
-            <div className="mt-9 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+            <div className="mt-7 grid gap-5 md:mt-9 md:gap-6 xl:grid-cols-[1.1fr_0.9fr]">
               <motion.div className="no-brand-card rounded-2xl border border-line bg-white p-5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(15,23,32,0.08)]" variants={floatItemVariants}>
                 <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-navy/50">Incluye</h3>
                 <ul className="mt-5 grid gap-3">
@@ -276,7 +265,7 @@ export function ServicesCatalog() {
               </div>
             </div>
 
-            <motion.div className="mt-8 flex flex-wrap gap-3" variants={floatItemVariants}>
+            <motion.div className="mt-6 flex flex-wrap gap-3 md:mt-8" variants={floatItemVariants}>
               <a
                 className="inline-flex items-center gap-2 rounded-md bg-orange px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-[#e04a10]"
                 href={whatsappUrl(activeService)}
@@ -298,9 +287,6 @@ export function ServicesCatalog() {
         </div>
       </motion.div>
 
-      {filteredServices.length === 0 ? (
-        <div className="mt-8 rounded-2xl border border-line bg-[#F7F4EE] p-8 text-center text-muted">No encontramos servicios para esa categoría.</div>
-      ) : null}
     </section>
     </Reveal>
   );

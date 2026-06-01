@@ -26,8 +26,7 @@ const directionalVariants: Record<MotionDirection, Variants> = {
       scale: 1,
       rotateX: 0,
       transition: { duration: 0.58, ease: easeOut, delay: delay / 1000 }
-    }),
-    exit: { opacity: 0, y: -14, scale: 0.98, transition: { duration: 0.26, ease: easeOut } }
+    })
   },
   left: {
     hidden: { opacity: 0, x: -36, scale: 0.97, rotateY: -6 },
@@ -37,8 +36,7 @@ const directionalVariants: Record<MotionDirection, Variants> = {
       scale: 1,
       rotateY: 0,
       transition: { duration: 0.6, ease: easeOut, delay: delay / 1000 }
-    }),
-    exit: { opacity: 0, x: -18, scale: 0.98, transition: { duration: 0.26, ease: easeOut } }
+    })
   },
   right: {
     hidden: { opacity: 0, x: 36, scale: 0.97, rotateY: 6 },
@@ -48,8 +46,7 @@ const directionalVariants: Record<MotionDirection, Variants> = {
       scale: 1,
       rotateY: 0,
       transition: { duration: 0.6, ease: easeOut, delay: delay / 1000 }
-    }),
-    exit: { opacity: 0, x: 18, scale: 0.98, transition: { duration: 0.26, ease: easeOut } }
+    })
   },
   scale: {
     hidden: { opacity: 0, y: 18, scale: 0.92, rotateX: 8 },
@@ -59,8 +56,7 @@ const directionalVariants: Record<MotionDirection, Variants> = {
       scale: 1,
       rotateX: 0,
       transition: { duration: 0.56, ease: easeOut, delay: delay / 1000 }
-    }),
-    exit: { opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.24, ease: easeOut } }
+    })
   }
 };
 

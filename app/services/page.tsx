@@ -1,6 +1,5 @@
 import { Reveal } from "@/components/portfolio/Reveal";
 import { SectionIntro } from "@/components/portfolio/SectionIntro";
-import { PricingOverview } from "@/components/portfolio/PricingOverview";
 import { ServicesCatalog } from "@/components/portfolio/ServicesCatalog";
 import { WorkProcess } from "@/components/portfolio/WorkProcess";
 import { pageMetadata } from "@/lib/metadata";
@@ -8,7 +7,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Servicios",
   description:
-    "Landings, sitios web, e-commerce, sistemas a medida y soporte. Explorá el catálogo de servicios de ISRA y cotizá por WhatsApp.",
+    "Landing pages, sitios web, e-commerce, sistemas a medida, automatizaciones y soporte técnico. Explorá los servicios de ISRA y cotizá por WhatsApp.",
   path: "/services"
 });
 
@@ -26,7 +25,7 @@ export default function ServicesPage() {
       </section>
       <ServicesCatalog />
       <WorkProcess />
-      <PricingOverview />
     </main>
   );
 }
+

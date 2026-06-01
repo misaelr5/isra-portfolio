@@ -1,4 +1,4 @@
-/** Configuración central del sitio — editar acá contacto y URLs de deploy. */
+/** Configuración central del sitio: editar acá contacto y URLs de deploy. */
 export const siteConfig = {
   name: "ISRA",
   tagline: "Innovación en Sistemas, Redes y Apps",
@@ -12,7 +12,8 @@ export const siteConfig = {
   whatsapp: "5493544434403",
   social: {
     github: "https://github.com/misaelr5",
-    linkedin: "https://www.linkedin.com/in/misaelr5/"
+    linkedin: "https://www.linkedin.com/in/misaelr5/",
+    instagram: "https://www.instagram.com/misael.lds/"
   }
 } as const;
 

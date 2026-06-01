@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site";
 
 const siteUrl = siteConfig.url;
+const ogImage = "/images/og-cover.svg";
 
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: siteConfig.name,
   title: {
     default: `${siteConfig.name} | Desarrollo web y soluciones digitales`,
     template: `%s | ${siteConfig.name}`
@@ -22,6 +24,12 @@ export const baseMetadata: Metadata = {
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
+  category: "technology",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false
+  },
   openGraph: {
     type: "website",
     locale: "es_AR",
@@ -29,16 +37,28 @@ export const baseMetadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} | Desarrollo web y soluciones digitales`,
     description: siteConfig.description,
-    images: [{ url: "/images/og-cover.svg", width: 1200, height: 630, alt: siteConfig.name }]
+    images: [{ url: ogImage, width: 1200, height: 630, alt: siteConfig.name }]
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} | Desarrollo web y soluciones digitales`,
     description: siteConfig.description,
-    images: ["/images/og-cover.svg"]
+    images: [ogImage]
   },
-  robots: { index: true, follow: true },
-  alternates: { canonical: "/" }
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  },
+  alternates: {
+    canonical: "/"
+  }
 };
 
 export function pageMetadata({
@@ -55,7 +75,21 @@ export function pageMetadata({
     title,
     description,
     alternates: { canonical: path },
-    openGraph: { title, description, url },
-    twitter: { title, description }
+    openGraph: {
+      type: "website",
+      locale: "es_AR",
+      siteName: siteConfig.name,
+      title,
+      description,
+      url,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${title} | ${siteConfig.name}` }]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage]
+    }
   };
 }
+

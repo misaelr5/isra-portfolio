@@ -37,14 +37,18 @@ export default function AcademicsPage() {
                   <Calendar size={15} aria-hidden="true" />
                   {item.date}
                 </span>
-                <span className="inline-flex items-center gap-1">
-                  <MapPin size={15} aria-hidden="true" />
-                  {item.place}
-                </span>
-                <span className="inline-flex items-center gap-1">
-                  <Award size={15} aria-hidden="true" />
-                  {item.grade}
-                </span>
+                {item.place ? (
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin size={15} aria-hidden="true" />
+                    {item.place}
+                  </span>
+                ) : null}
+                {item.grade ? (
+                  <span className="inline-flex items-center gap-1">
+                    <Award size={15} aria-hidden="true" />
+                    {item.grade}
+                  </span>
+                ) : null}
               </div>
               <ul className="mt-6 grid gap-3">
                 {item.bullets.map((bullet) => (

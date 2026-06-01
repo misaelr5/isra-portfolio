@@ -1,5 +1,14 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { defaultWhatsAppHref } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Página no encontrada",
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 export default function NotFound() {
   return (
